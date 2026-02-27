@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta charset="utf-8" />
+    <link href="globals.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script>
+        tailwind.config = {
+            theme: { extend: {} },
+            plugins: [],
+        };
+    </script>
+    <style>
+        /* Mobile menu transition */
+        #mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        #mobile-menu.open {
+            max-height: 500px;
+        }
+
+        /* Hamburger icon lines */
+        .ham-line {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #2f2f2f;
+            transition: transform 0.25s, opacity 0.25s;
+            transform-origin: center;
+        }
+
+        #ham-btn.open .ham-line:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        #ham-btn.open .ham-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        #ham-btn.open .ham-line:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+    </style>
+    <script src="/load.js">
+    </script>
+    <script src="/static/anima.min.js" type="module">
+    </script>
+</head>
+
+<body>
+    <div class="flex flex-col items-start w-full">
+        <!-- ===== TOP BAR ===== -->
+        <div class="hidden md:flex items-center justify-between px-6 lg:px-24 py-2 w-full bg-[#007771]">
+            <div class="flex items-center gap-4 lg:gap-6">
+                <div class="flex items-center gap-1">
+                    <img alt="phone" class="w-4 h-4" src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/svg.svg" />
+                    <span class="font-normal text-white text-sm leading-[21px] [font-family:'Geist',Helvetica]">
+                        +1 222-555-33-99
+                    </span>
+                </div>
+                <div class="w-px h-[23px] bg-[#ffffff1a]">
+                </div>
+                <div class="flex items-center gap-1">
+                    <img alt="email" class="w-4 h-3" src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/svg-1.svg" />
+                    <span class="font-normal text-white text-sm leading-[21px] [font-family:'Geist',Helvetica]">
+                        support@idispatch.com
+                    </span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 lg:gap-6">
+                <div class="flex items-center gap-1">
+                    <img alt="language" class="w-5 h-5" src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/lang-svg.svg" />
+                    <span class="text-white text-sm [font-family:'Geist',Helvetica]">
+                        EN
+                    </span>
+                    <img alt="" class="w-4 h-4" src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/arrow-down-01.svg" />
+                </div>
+                <div class="w-px h-[23px] bg-[#ffffff1a]">
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-white text-sm [font-family:'Geist',Helvetica]">
+                        USD
+                    </span>
+                    <img alt="" class="w-4 h-4" src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/arrow-down-01.svg" />
+                </div>
+            </div>
+        </div>
+        <!-- ===== MAIN NAVBAR ===== -->
+        <nav class="w-full bg-white border-b border-[#50576233] sticky top-0 z-50">
+            <div class="flex items-center justify-between px-4 sm:px-8 lg:px-24 py-4 lg:py-5">
+                <!-- Logo -->
+                <img alt="IDispatch Solutions" class="h-8 lg:h-10 w-auto"
+                    src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/logo-design-final-01-1.svg" />
+                <!-- Desktop Nav Links -->
+                <div class="hidden lg:flex items-center gap-5">
+                    <div class="flex flex-col items-center gap-1 px-2 py-0 rounded-lg">
+                        <span class="font-normal text-[#007771] text-base leading-6 [font-family:'Geist',Helvetica]">
+                            Home
+                        </span>
+                        <div class="w-6 h-0.5 rounded-[50px]">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center gap-1 px-2 py-0 rounded-lg">
+                        <span class="font-medium text-[#383838] text-base leading-6 [font-family:'Geist',Helvetica]">
+                            About Us
+                        </span>
+                        <div class="w-6 h-0.5 bg-[#383838] rounded-[50px]">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center gap-1 px-2 py-0 rounded-lg">
+                        <div class="flex items-center gap-1">
+                            <span
+                                class="font-normal text-[#007771] text-base leading-6 [font-family:'Geist',Helvetica]">
+                                Services
+                            </span>
+                            <img alt="" class="w-3 h-3" src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/image.svg" />
+                        </div>
+                        <div class="w-6 h-0.5 rounded-[50px]">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center gap-1 px-2 py-0 rounded-lg">
+                        <span class="font-normal text-[#007771] text-base leading-6 [font-family:'Geist',Helvetica]">
+                            Reviews
+                        </span>
+                        <div class="w-6 h-0.5 rounded-[50px]">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center gap-1 px-2 py-0 rounded-lg">
+                        <span class="font-normal text-[#007771] text-base leading-6 [font-family:'Geist',Helvetica]">
+                            Blog
+                        </span>
+                        <div class="w-6 h-0.5 rounded-[50px]">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center gap-1 px-2 py-0 rounded-lg">
+                        <span class="font-normal text-[#007771] text-base leading-6 [font-family:'Geist',Helvetica]">
+                            Contact
+                        </span>
+                        <div class="w-6 h-0.5 rounded-[50px]">
+                        </div>
+                    </div>
+                </div>
+                <!-- Desktop CTA -->
+                <button
+                    class="hidden lg:flex items-center justify-center gap-2.5 px-8 py-3 bg-[#3838380d] rounded-xl border border-solid border-[#383838] whitespace-nowrap">
+                    <span class="font-medium text-[#19253a] text-base leading-6 [font-family:'Geist',Helvetica]">
+                        Get Started
+                    </span>
+                </button>
+                <!-- Hamburger (mobile) -->
+                <button aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu"
+                    class="lg:hidden flex flex-col gap-[5px] p-2 rounded focus-visible:outline-2 focus-visible:outline-[#4a90e2]"
+                    id="ham-btn">
+                    <span class="ham-line">
+                    </span>
+                    <span class="ham-line">
+                    </span>
+                    <span class="ham-line">
+                    </span>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div aria-label="Mobile navigation" id="mobile-menu" role="menu">
+                <div class="flex flex-col px-4 sm:px-8 pb-4 gap-1 border-t border-[#50576233]">
+                    <a class="py-3 font-normal text-[#007771] text-base [font-family:'Geist',Helvetica] border-b border-gray-100"
+                        href="#">
+                        Home
+                    </a>
+                    <a class="py-3 font-medium text-[#383838] text-base [font-family:'Geist',Helvetica] border-b border-gray-100"
+                        href="#">
+                        About Us
+                    </a>
+                    <a class="py-3 font-normal text-[#007771] text-base [font-family:'Geist',Helvetica] border-b border-gray-100"
+                        href="#">
+                        Services
+                    </a>
+                    <a class="py-3 font-normal text-[#007771] text-base [font-family:'Geist',Helvetica] border-b border-gray-100"
+                        href="#">
+                        Reviews
+                    </a>
+                    <a class="py-3 font-normal text-[#007771] text-base [font-family:'Geist',Helvetica] border-b border-gray-100"
+                        href="#">
+                        Blog
+                    </a>
+                    <a class="py-3 font-normal text-[#007771] text-base [font-family:'Geist',Helvetica] border-b border-gray-100"
+                        href="#">
+                        Contact
+                    </a>
+                    <button
+                        class="mt-3 w-full flex items-center justify-center gap-2.5 px-8 py-3 bg-[#3838380d] rounded-xl border border-solid border-[#383838]">
+                        <span class="font-medium text-[#19253a] text-base [font-family:'Geist',Helvetica]">
+                            Get Started
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <!-- ===== HERO SECTION ===== -->
+        <div
+            class="relative w-full min-h-[320px] md:min-h-[400px] lg:min-h-[482px] overflow-hidden [background:linear-gradient(180deg,rgba(47,47,47,1)_0%,rgba(0,119,113,1)_100%)]">
+            <!-- Background image overlay -->
+            <div
+                class="absolute inset-0 [background:url(https://c.animaapp.com/mm4ywfojUyZ5K9/img/image--dispatch-control-center-.png)_50%_50%_/_cover] opacity-20">
+            </div>
+            <div
+                class="absolute inset-0 [background:linear-gradient(135deg,rgba(47,47,47,0.9)_0%,rgba(0,119,113,0.9)_100%)]">
+            </div>
+            <!-- Decorative blobs -->
+            <div class="absolute top-20 left-10 w-48 h-48 md:w-64 md:h-64 bg-white rounded-full blur-3xl opacity-10">
+            </div>
+            <div
+                class="absolute top-4 right-10 w-64 h-64 md:w-96 md:h-96 bg-[#007771] rounded-full blur-3xl opacity-10">
+            </div>
+            <!-- Content -->
+            <div
+                class="relative z-10 flex flex-col items-start gap-4 md:gap-5 px-4 sm:px-8 lg:px-[110px] py-12 md:py-20 lg:py-32 max-w-[960px]">
+                <div class="inline-flex items-center justify-center gap-2.5 px-4 py-3 bg-[#ffffff1a] rounded-[100px]">
+                    <span class="font-medium text-[#ffffffe6] text-sm leading-5 [font-family:'Inter',Helvetica]">
+                        OUR STORY
+                    </span>
+                </div>
+                <h1
+                    class="font-bold text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight [font-family:'Inter',Helvetica]">
+                    ABOUT IDISPATCH SOLUTIONS
+                </h1>
+                <p
+                    class="font-normal text-[#ffffffe6] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed [font-family:'Inter',Helvetica] max-w-[789px]">
+                    Professional Live Call Handling and Dispatch Operations for Transportation Companies
+                </p>
+            </div>
+        </div>
+        <!-- ===== SECTION 1: Evolution ===== -->
+        <section
+            class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 px-4 sm:px-8 lg:px-24 py-12 lg:py-24 w-full bg-white">
+            <!-- Image block -->
+            <div class="relative w-full lg:w-[595px] flex-shrink-0 max-w-[595px] mx-auto lg:mx-0">
+                <div class="absolute top-0 left-0 w-32 h-32 md:w-48 md:h-48 bg-[#0077710d] rounded-3xl">
+                </div>
+                <div class="relative top-6 left-6 md:top-8 md:left-8 rounded-[20px] overflow-hidden bg-[#acacac]">
+                    <img alt="Transportation operations" class="w-full h-auto object-cover"
+                        src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/image-7.png" />
+                </div>
+                <div class="absolute bottom-0 right-0 w-32 h-32 md:w-48 md:h-48 bg-[#0077711a] rounded-3xl -z-10">
+                </div>
+            </div>
+            <!-- Text block -->
+            <div class="flex flex-col w-full lg:w-[605px] items-start gap-6">
+                <div class="flex flex-col items-start gap-4 w-full">
+                    <h2
+                        class="font-bold text-[#2f2f2f] text-2xl sm:text-3xl lg:text-4xl leading-tight [font-family:'Geist',Helvetica]">
+                        The Evolution of
+                        <br />
+                        Transportation Operations
+                    </h2>
+                    <p
+                        class="font-normal text-gray-500 text-base lg:text-lg leading-relaxed [font-family:'Geist',Helvetica]">
+                        The passenger transportation industry has evolved.
+                    </p>
+                </div>
+                <div class="flex flex-col gap-2 w-full pt-4">
+                    <div class="flex items-center gap-3 w-full h-auto min-h-[60px] bg-gray-50 rounded-[14px] px-4 py-4">
+                        <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                        </div>
+                        <span
+                            class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                            Clients expect immediate response.
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3 w-full h-auto min-h-[60px] bg-gray-50 rounded-[14px] px-4 py-4">
+                        <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                        </div>
+                        <span
+                            class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                            Corporate travel managers expect precision.
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3 w-full h-auto min-h-[60px] bg-gray-50 rounded-[14px] px-4 py-4">
+                        <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                        </div>
+                        <span
+                            class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                            Passengers expect seamless service.
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3 w-full h-auto min-h-[60px] bg-gray-50 rounded-[14px] px-4 py-4">
+                        <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                        </div>
+                        <span
+                            class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                            Affiliates expect structure.
+                        </span>
+                    </div>
+                </div>
+                <p class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica]">
+                    Yet many limousine and executive car companies still operate dispatch under outdated models —
+                    fragmented staffing, limited coverage, reactive communication, and inconsistent client handling.
+                </p>
+                <div class="flex flex-col gap-4 w-full">
+                    <p class="font-bold text-[#2f2f2f] text-lg lg:text-xl leading-10 [font-family:'Geist',Helvetica]">
+                        IDispatch Solutions was built to change that.
+                    </p>
+                    <p class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica]">
+                        We provide structured, technology-aligned, professionally managed dispatch operations designed
+                        for the modern transportation company.
+                    </p>
+                </div>
+                <p class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                    We do not simply answer phones.
+                    <br />
+                    We manage operational flow.
+                </p>
+            </div>
+        </section>
+        <!-- ===== SECTION 2: Problem with Traditional Dispatch ===== -->
+        <section
+            class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 px-4 sm:px-8 lg:px-24 py-12 lg:py-24 w-full bg-white">
+            <div class="flex flex-col w-full lg:w-[577px] items-start gap-8">
+                <h2
+                    class="font-bold text-[#2f2f2f] text-2xl sm:text-3xl lg:text-4xl leading-tight [font-family:'Geist',Helvetica]">
+                    The Problem with
+                    <br />
+                    Traditional Dispatch Models
+                </h2>
+                <div class="flex flex-col items-start gap-4 w-full">
+                    <p class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica]">
+                        Many transportation companies struggle with one or more of the following:
+                    </p>
+                    <div class="flex flex-col items-start gap-4 p-6 w-full bg-gray-50 rounded-2xl">
+                        <ul
+                            class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica] space-y-1 list-none">
+                            <li>
+                                * Missed inbound calls during peak hours
+                            </li>
+                            <li>
+                                * Inconsistent call quality and booking procedures
+                            </li>
+                            <li>
+                                * Overworked in-house dispatchers
+                            </li>
+                            <li>
+                                * Limited after-hours coverage
+                            </li>
+                            <li>
+                                * Poor coordination between office and chauffeurs
+                            </li>
+                            <li>
+                                * Lack of reporting and performance tracking
+                            </li>
+                            <li>
+                                * Reactive problem-solving instead of proactive trip management
+                            </li>
+                        </ul>
+                    </div>
+                    <p class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica]">
+                        Traditional answering services lack industry knowledge. Software-only solutions lack human
+                        judgment. In-house staffing creates scalability limitations.
+                    </p>
+                </div>
+                <div class="flex flex-col items-start gap-4 w-full">
+                    <p class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica]">
+                        Modern transportation companies require a hybrid model:
+                    </p>
+                    <div
+                        class="flex flex-col items-start pl-7 pr-6 pt-6 pb-6 w-full bg-[#0077710d] rounded-[0px_14px_14px_0px] border-l-4 border-[#007771]">
+                        <span
+                            class="font-medium text-[#2f2f2f] text-base lg:text-lg leading-7 [font-family:'Geist',Helvetica]">
+                            Technology-driven. Human-managed. Operationally disciplined.
+                        </span>
+                    </div>
+                    <p class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica]">
+                        That is the IDispatch standard.
+                    </p>
+                </div>
+            </div>
+            <div class="w-full lg:w-auto flex justify-center lg:justify-end flex-shrink-0">
+                <img alt="Dispatch model illustration" class="w-full max-w-[500px] lg:max-w-[683px] h-auto"
+                    src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/group-1.png" />
+            </div>
+        </section>
+        <!-- ===== SECTION 3: What We Do ===== -->
+        <section
+            class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 px-4 sm:px-8 lg:px-24 py-12 lg:py-24 w-full bg-white">
+            <div class="flex flex-col w-full lg:w-[556px] items-start gap-6">
+                <h2
+                    class="font-bold text-[#2f2f2f] text-2xl sm:text-3xl lg:text-4xl leading-tight [font-family:'Geist',Helvetica]">
+                    What We Do
+                </h2>
+                <div class="flex flex-col items-start gap-2 w-full">
+                    <p class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica]">
+                        IDispatch Solutions operates as a structured extension of your internal operations.
+                    </p>
+                    <p class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica]">
+                        Our team integrates directly into your dispatch platform, follows your pricing rules, service
+                        policies, and brand voice, and manages real-time reservation and dispatch functions with
+                        precision.
+                    </p>
+                </div>
+                <div class="flex flex-col items-start gap-4 w-full">
+                    <div
+                        class="font-medium text-[#2f2f2f] text-base lg:text-lg leading-[27px] [font-family:'Geist',Helvetica]">
+                        Core Operational Functions
+                    </div>
+                    <div class="flex flex-col gap-2 w-full">
+                        <p class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica]">
+                            <strong class="text-[#2f2f2f]">
+                                Live Call Monitoring &amp; Professional Answering
+                            </strong>
+                            <br />
+                            All inbound calls answered under your company name with a trained, industry-specific script
+                            and corporate communication standard.
+                        </p>
+                        <p class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica]">
+                            <strong class="text-[#2f2f2f]">
+                                Reservation Processing &amp; Booking Management
+                            </strong>
+                            <br />
+                            New bookings entered accurately into your dispatch software. Quote generation based on your
+                            rate structure. Reservation confirmations, modifications, cancellations handled seamlessly.
+                        </p>
+                        <p class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica]">
+                            <strong class="text-[#2f2f2f]">
+                                Chauffeur Coordination &amp; Trip Oversight
+                            </strong>
+                            <br />
+                            Real-time driver communication. Trip status monitoring. Flight tracking. Proactive issue
+                            management. Escalation protocols when needed.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3 w-full">
+                    <div
+                        class="flex flex-col items-start p-4 w-full bg-white rounded-[14px] border border-solid border-gray-200">
+                        <p
+                            class="font-semibold text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                            After-Hours &amp; 24/7 Coverage — Nights, weekends, holidays, overflow support without
+                            interruption.
+                        </p>
+                    </div>
+                    <p class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica]">
+                        Affiliate Trip Handling — Structured coordination for affiliate bookings, confirmations, and
+                        communication standards aligned with professional network expectations.
+                    </p>
+                </div>
+            </div>
+            <!-- Image with stats overlay -->
+            <div class="relative w-full lg:w-[624px] flex-shrink-0 max-w-[624px] mx-auto lg:mx-0">
+                <div class="absolute bottom-0 right-0 w-32 h-32 md:w-48 md:h-48 bg-[#0077711a] rounded-3xl -z-10">
+                </div>
+                <div class="absolute -top-4 -left-4 w-20 h-20 md:w-32 md:h-32 bg-[#0077710d] rounded-3xl -z-10">
+                </div>
+                <div class="relative rounded-3xl overflow-hidden shadow-[0px_25px_50px_-12px_#00000040]">
+                    <div
+                        class="w-full aspect-[624/677] [background:url(https://c.animaapp.com/mm4ywfojUyZ5K9/img/image--leadership-excellence-.png)_50%_50%_/_cover]">
+                    </div>
+                    <div
+                        class="absolute inset-0 [background:linear-gradient(45deg,rgba(0,119,113,0.4)_0%,rgba(47,47,47,0.3)_100%)]">
+                    </div>
+                    <!-- Stats bar -->
+                    <div
+                        class="absolute bottom-4 left-4 right-4 flex items-center justify-around bg-[#ffffffe6] rounded-2xl border border-[#ffffff80] px-4 py-4 gap-2">
+                        <div class="flex flex-col items-center gap-1">
+                            <span
+                                class="font-bold text-[#007771] text-2xl lg:text-3xl text-center leading-9 [font-family:'Inter',Helvetica]">
+                                15+
+                            </span>
+                            <span
+                                class="font-normal text-gray-500 text-xs text-center leading-4 [font-family:'Inter',Helvetica]">
+                                Years Combined
+                            </span>
+                        </div>
+                        <div class="w-px h-10 bg-gray-200">
+                        </div>
+                        <div class="flex flex-col items-center gap-1">
+                            <span
+                                class="font-bold text-[#007771] text-2xl lg:text-3xl text-center leading-9 [font-family:'Inter',Helvetica]">
+                                100%
+                            </span>
+                            <span
+                                class="font-normal text-gray-500 text-xs text-center leading-4 [font-family:'Inter',Helvetica]">
+                                Dedicated
+                            </span>
+                        </div>
+                        <div class="w-px h-10 bg-gray-200">
+                        </div>
+                        <div class="flex flex-col items-center gap-1">
+                            <span
+                                class="font-bold text-[#007771] text-2xl lg:text-3xl text-center leading-9 [font-family:'Inter',Helvetica]">
+                                24/7
+                            </span>
+                            <span
+                                class="font-normal text-gray-500 text-xs text-center leading-4 [font-family:'Inter',Helvetica]">
+                                Support
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ===== SECTION 4: Revenue Protection ===== -->
+        <section
+            class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 px-4 sm:px-8 lg:px-24 py-12 lg:py-24 w-full bg-white">
+            <div class="flex flex-col w-full lg:w-[560px] items-start gap-6">
+                <h2
+                    class="font-bold text-[#2f2f2f] text-2xl sm:text-3xl lg:text-4xl leading-tight [font-family:'Geist',Helvetica]">
+                    Revenue Protection &amp;
+                    <br />
+                    Growth Strategy
+                </h2>
+                <div class="flex flex-col items-start gap-4 w-full">
+                    <div
+                        class="flex flex-col items-start pt-6 pb-6 px-6 w-full bg-red-50 rounded-[14px] border border-[#ffe2e2]">
+                        <p class="font-medium text-[#2f2f2f] text-base leading-6 [font-family:'Geist',Helvetica]">
+                            Every missed call is lost revenue.
+                        </p>
+                    </div>
+                    <div
+                        class="flex flex-col items-start pt-6 pb-6 px-6 w-full bg-orange-50 rounded-[14px] border border-[#ffedd4]">
+                        <p class="font-medium text-[#2f2f2f] text-base leading-6 [font-family:'Geist',Helvetica]">
+                            Every delayed response impacts brand perception.
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col items-start gap-6 p-6 w-full rounded-2xl [background:linear-gradient(180deg,rgba(0,119,113,1)_0%,rgba(0,95,90,1)_100%)]">
+                    <div
+                        class="font-semibold text-white text-base lg:text-lg leading-7 [font-family:'Geist',Helvetica]">
+                        IDispatch Solutions helps you:
+                    </div>
+                    <div class="flex flex-col items-start gap-2 w-full">
+                        <div class="flex items-center gap-3">
+                            <img alt="" class="w-5 h-5 flex-shrink-0"
+                                src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon.svg" />
+                            <span class="font-medium text-white text-base leading-6 [font-family:'Geist',Helvetica]">
+                                Capture more inbound reservations
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img alt="" class="w-5 h-5 flex-shrink-0"
+                                src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon.svg" />
+                            <span class="font-medium text-white text-base leading-6 [font-family:'Geist',Helvetica]">
+                                Improve booking conversion rates
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img alt="" class="w-5 h-5 flex-shrink-0"
+                                src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon.svg" />
+                            <span class="font-medium text-white text-base leading-6 [font-family:'Geist',Helvetica]">
+                                Reduce call abandonment
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img alt="" class="w-5 h-5 flex-shrink-0"
+                                src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon.svg" />
+                            <span class="font-medium text-white text-base leading-6 [font-family:'Geist',Helvetica]">
+                                Standardize communication quality
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img alt="" class="w-5 h-5 flex-shrink-0"
+                                src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon.svg" />
+                            <span class="font-medium text-white text-base leading-6 [font-family:'Geist',Helvetica]">
+                                Increase operational consistency
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img alt="" class="w-5 h-5 flex-shrink-0"
+                                src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon.svg" />
+                            <span class="font-medium text-white text-base leading-6 [font-family:'Geist',Helvetica]">
+                                Strengthen affiliate trust
+                            </span>
+                        </div>
+                    </div>
+                    <div class="w-full pt-6 border-t border-[#ffffff33]">
+                        <p
+                            class="font-medium text-white text-base lg:text-lg leading-7 [font-family:'Geist',Helvetica]">
+                            We do not operate as a cost center.
+                            <br />
+                            We operate as a revenue protection system.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-auto flex justify-center flex-shrink-0">
+                <img alt="Revenue strategy illustration" class="w-full max-w-[500px] lg:max-w-[700px] h-auto"
+                    src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/frame-2147228139.svg" />
+            </div>
+        </section>
+        <!-- ===== SECTION 5: Technology Alignment ===== -->
+        <section
+            class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 px-4 sm:px-8 lg:px-24 py-12 lg:py-24 w-full bg-white">
+            <!-- Image block -->
+            <div class="relative w-full lg:w-[595px] flex-shrink-0 max-w-[595px] mx-auto lg:mx-0">
+                <div class="absolute top-0 left-0 w-32 h-32 md:w-48 md:h-48 bg-[#0077710d] rounded-3xl">
+                </div>
+                <div class="relative top-6 left-6 md:top-8 md:left-8 rounded-[20px] overflow-hidden bg-[#acacac]">
+                    <img alt="Technology alignment" class="w-full h-auto object-cover"
+                        src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/image-8.png" />
+                </div>
+                <div class="absolute bottom-0 right-0 w-32 h-32 md:w-48 md:h-48 bg-[#0077711a] rounded-3xl -z-10">
+                </div>
+            </div>
+            <!-- Text block -->
+            <div class="flex flex-col w-full lg:w-[605px] items-start gap-6">
+                <div class="flex flex-col items-start gap-4 w-full">
+                    <h2
+                        class="font-bold text-[#2f2f2f] text-2xl sm:text-3xl lg:text-4xl leading-tight [font-family:'Geist',Helvetica]">
+                        Technology Alignment
+                    </h2>
+                    <p class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica]">
+                        We understand dispatch platforms used in the transportation industry. We operate inside your
+                        system — not outside it.
+                    </p>
+                </div>
+                <div class="flex flex-col items-start gap-4 w-full">
+                    <div
+                        class="font-medium text-gray-500 text-base lg:text-lg leading-relaxed [font-family:'Geist',Helvetica]">
+                        Our operational alignment includes:
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                            </div>
+                            <span
+                                class="font-medium text-[#2f2f2f] text-base lg:text-lg leading-7 [font-family:'Geist',Helvetica]">
+                                Cloud-based dispatch systems
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                            </div>
+                            <span
+                                class="font-medium text-[#2f2f2f] text-base lg:text-lg leading-7 [font-family:'Geist',Helvetica]">
+                                CRM management
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                            </div>
+                            <span
+                                class="font-medium text-[#2f2f2f] text-base lg:text-lg leading-7 [font-family:'Geist',Helvetica]">
+                                Trip status dashboards
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                            </div>
+                            <span
+                                class="font-medium text-[#2f2f2f] text-base lg:text-lg leading-7 [font-family:'Geist',Helvetica]">
+                                Reporting and performance metrics
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                            </div>
+                            <span
+                                class="font-medium text-[#2f2f2f] text-base lg:text-lg leading-7 [font-family:'Geist',Helvetica]">
+                                Structured call logging
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                            </div>
+                            <span
+                                class="font-medium text-[#2f2f2f] text-base lg:text-lg leading-7 [font-family:'Geist',Helvetica]">
+                                Secure communication protocols
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg sm:col-span-2 lg:col-span-1">
+                            <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                            </div>
+                            <span
+                                class="font-medium text-[#2f2f2f] text-base lg:text-lg leading-7 [font-family:'Geist',Helvetica]">
+                                GPS monitoring
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col items-start gap-4 w-full">
+                    <div
+                        class="font-bold text-[#2f2f2f] text-base lg:text-xl leading-10 [font-family:'Geist',Helvetica]">
+                        This ensures:
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 w-full">
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                            </div>
+                            <span
+                                class="font-medium text-[#2f2f2f] text-base lg:text-lg leading-7 [font-family:'Geist',Helvetica]">
+                                Accuracy
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                            </div>
+                            <span
+                                class="font-medium text-[#2f2f2f] text-base lg:text-lg leading-7 [font-family:'Geist',Helvetica]">
+                                Transparency
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                            </div>
+                            <span
+                                class="font-medium text-[#2f2f2f] text-base lg:text-lg leading-7 [font-family:'Geist',Helvetica]">
+                                Accountability
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                            </div>
+                            <span
+                                class="font-medium text-[#2f2f2f] text-base lg:text-lg leading-7 [font-family:'Geist',Helvetica]">
+                                Scalability
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <p class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica]">
+                    Your business remains fully in control. We enhance performance behind the scenes.
+                </p>
+            </div>
+        </section>
+        <!-- ===== SECTION 6: Why Companies Choose IDispatch ===== -->
+        <section
+            class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 px-4 sm:px-8 lg:px-24 py-12 lg:py-24 w-full bg-white">
+            <div class="flex flex-col w-full lg:w-[556px] items-start gap-6">
+                <h2
+                    class="font-bold text-[#2f2f2f] text-2xl sm:text-3xl lg:text-4xl leading-tight [font-family:'Geist',Helvetica]">
+                    Why Companies Choose IDispatch Solutions
+                </h2>
+                <div class="flex flex-col items-start gap-2 w-full">
+                    <div class="flex items-center gap-3 w-full min-h-[60px] bg-gray-50 rounded-[14px] px-4 py-4">
+                        <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                        </div>
+                        <span
+                            class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                            Industry-Specific Expertise
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3 w-full min-h-[60px] bg-gray-50 rounded-[14px] px-4 py-4">
+                        <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                        </div>
+                        <span
+                            class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                            Structured Operational Framework
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3 w-full min-h-[60px] bg-gray-50 rounded-[14px] px-4 py-4">
+                        <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                        </div>
+                        <span
+                            class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                            Technology Integration
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3 w-full min-h-[60px] bg-gray-50 rounded-[14px] px-4 py-4">
+                        <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                        </div>
+                        <span
+                            class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                            24/7 Reliability
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3 w-full min-h-[60px] bg-gray-50 rounded-[14px] px-4 py-4">
+                        <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                        </div>
+                        <span
+                            class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                            Revenue-Focused Call Handling
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3 w-full min-h-[60px] bg-gray-50 rounded-[14px] px-4 py-4">
+                        <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                        </div>
+                        <span
+                            class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                            Reduced Payroll Burden
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3 w-full min-h-[60px] bg-gray-50 rounded-[14px] px-4 py-4">
+                        <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                        </div>
+                        <span
+                            class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                            Scalable Infrastructure
+                        </span>
+                    </div>
+                </div>
+                <p class="font-normal text-gray-500 text-base leading-6 [font-family:'Geist',Helvetica]">
+                    We eliminate operational chaos and replace it with structure.
+                </p>
+            </div>
+            <div class="w-full lg:w-auto flex justify-center flex-shrink-0">
+                <img alt="Why choose IDispatch" class="w-full max-w-[500px] lg:max-w-[700px] h-auto"
+                    src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/container-1.svg" />
+            </div>
+        </section>
+        <!-- ===== SECTION 7: Future of Dispatch ===== -->
+        <section
+            class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 px-4 sm:px-8 lg:px-24 py-12 lg:py-24 w-full bg-white">
+            <div class="w-full lg:w-auto flex justify-center flex-shrink-0">
+                <img alt="Future of dispatch" class="w-full max-w-[480px] lg:max-w-[700px] h-auto"
+                    src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/container-2.svg" />
+            </div>
+            <div class="flex flex-col items-start gap-8 lg:gap-10 w-full">
+                <div class="flex flex-col items-start gap-4 w-full">
+                    <h2
+                        class="font-bold text-[#2f2f2f] text-2xl sm:text-3xl lg:text-4xl leading-tight [font-family:'Geist',Helvetica]">
+                        The Future of Dispatch
+                    </h2>
+                    <div class="flex flex-col sm:flex-row items-start gap-6 w-full">
+                        <div class="flex flex-col items-start gap-4 flex-1">
+                            <p class="font-normal text-[#2f2f2f] text-base leading-6 [font-family:'Geist',Helvetica]">
+                                The transportation industry is no longer local.
+                            </p>
+                            <div class="flex flex-wrap gap-x-4 gap-y-2">
+                                <div class="flex items-center gap-3">
+                                    <img alt="" class="w-5 h-5 flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon.svg" />
+                                    <span
+                                        class="font-medium text-[#2f2f2f] text-base leading-6 [font-family:'Geist',Helvetica]">
+                                        It is connected.
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <img alt="" class="w-5 h-5 flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon.svg" />
+                                    <span
+                                        class="font-medium text-[#2f2f2f] text-base leading-6 [font-family:'Geist',Helvetica]">
+                                        Corporate.
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <img alt="" class="w-5 h-5 flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon.svg" />
+                                    <span
+                                        class="font-medium text-[#2f2f2f] text-base leading-6 [font-family:'Geist',Helvetica]">
+                                        Data-driven.
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <img alt="" class="w-5 h-5 flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon.svg" />
+                                    <span
+                                        class="font-medium text-[#2f2f2f] text-base leading-6 [font-family:'Geist',Helvetica]">
+                                        Immediate.
+                                    </span>
+                                </div>
+                            </div>
+                            <p class="font-normal text-[#2f2f2f] text-base leading-6 [font-family:'Geist',Helvetica]">
+                                Companies that modernize their dispatch infrastructure will outperform those that do
+                                not.
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-start gap-4 flex-1">
+                            <p class="font-normal text-[#2f2f2f] text-base leading-6 [font-family:'Geist',Helvetica]">
+                                IDispatch Solutions is built for:
+                            </p>
+                            <div class="flex flex-col items-start gap-2">
+                                <div class="flex items-center gap-3">
+                                    <img alt="" class="w-5 h-5 flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon.svg" />
+                                    <span
+                                        class="font-medium text-[#2f2f2f] text-base leading-6 [font-family:'Geist',Helvetica]">
+                                        Precision
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <img alt="" class="w-5 h-5 flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon.svg" />
+                                    <span
+                                        class="font-medium text-[#2f2f2f] text-base leading-6 [font-family:'Geist',Helvetica]">
+                                        Scalability
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <img alt="" class="w-5 h-5 flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon.svg" />
+                                    <span
+                                        class="font-medium text-[#2f2f2f] text-base leading-6 [font-family:'Geist',Helvetica]">
+                                        Speed
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <img alt="" class="w-5 h-5 flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon.svg" />
+                                    <span
+                                        class="font-medium text-[#2f2f2f] text-base leading-6 [font-family:'Geist',Helvetica]">
+                                        Professionalism
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <img alt="" class="w-5 h-5 flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon.svg" />
+                                    <span
+                                        class="font-medium text-[#2f2f2f] text-base leading-6 [font-family:'Geist',Helvetica]">
+                                        Growth
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button
+                    class="flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 bg-[#007771] rounded-[10px] shadow-[0px_4px_6px_-4px_#00777133,0px_10px_15px_-3px_#00777133] focus-visible:outline-2 focus-visible:outline-[#4a90e2]">
+                    <span
+                        class="font-medium text-white text-base text-center leading-6 [font-family:'Geist',Helvetica]">
+                        Start Your Partnership Today
+                    </span>
+                    <img alt="" class="w-5 h-5 flex-shrink-0"
+                        src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/icon-12.svg" />
+                </button>
+            </div>
+        </section>
+        <!-- ===== SECTION 8: Build a Stronger Foundation ===== -->
+        <section
+            class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16 px-4 sm:px-8 lg:px-24 py-12 lg:py-24 w-full bg-white">
+            <div class="flex flex-col w-full lg:w-[605px] items-start gap-6">
+                <h2
+                    class="font-bold text-[#2f2f2f] text-2xl sm:text-3xl lg:text-4xl leading-tight [font-family:'Geist',Helvetica]">
+                    Build a Stronger Operational Foundation
+                </h2>
+                <div class="flex flex-col gap-3 w-full">
+                    <div
+                        class="font-normal text-gray-500 text-base lg:text-lg leading-relaxed [font-family:'Geist',Helvetica]">
+                        You focus on:
+                    </div>
+                    <div class="flex flex-col gap-2 w-full">
+                        <div class="flex items-center gap-3 w-full min-h-[60px] bg-gray-50 rounded-[14px] px-4 py-4">
+                            <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                            </div>
+                            <span
+                                class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                                Sales
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3 w-full min-h-[60px] bg-gray-50 rounded-[14px] px-4 py-4">
+                            <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                            </div>
+                            <span
+                                class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                                Client relationships
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3 w-full min-h-[60px] bg-gray-50 rounded-[14px] px-4 py-4">
+                            <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                            </div>
+                            <span
+                                class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                                Fleet growth
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3 w-full min-h-[60px] bg-gray-50 rounded-[14px] px-4 py-4">
+                            <div class="w-2 h-2 flex-shrink-0 bg-[#007771] rounded-full">
+                            </div>
+                            <span
+                                class="font-medium text-[#2f2f2f] text-base lg:text-xl leading-7 [font-family:'Geist',Helvetica]">
+                                Affiliate expansion
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <p
+                    class="font-normal text-gray-500 text-base lg:text-lg leading-relaxed [font-family:'Geist',Helvetica]">
+                    We manage the operational backbone.
+                    <br />
+                    IDispatch Solutions — Modern Dispatch. Structured Operations. Scalable Growth.
+                </p>
+            </div>
+            <!-- Image block -->
+            <div class="relative w-full lg:w-[579px] flex-shrink-0 max-w-[579px] mx-auto lg:mx-0">
+                <div class="absolute top-0 left-0 w-32 h-32 md:w-48 md:h-48 bg-[#0077710d] rounded-3xl">
+                </div>
+                <div class="absolute bottom-0 right-0 w-32 h-32 md:w-48 md:h-48 bg-[#0077710d] rounded-3xl -z-10">
+                </div>
+                <div class="relative top-4 left-4 md:top-4 md:left-[22px] rounded-[20px] overflow-hidden bg-[#acacac]">
+                    <img alt="Operational foundation" class="w-full h-auto object-cover"
+                        src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/image-9.png" />
+                </div>
+            </div>
+        </section>
+        <!-- ===== FOOTER ===== -->
+        <footer
+            class="flex flex-col items-start gap-12 lg:gap-16 px-4 sm:px-8 lg:px-24 py-12 lg:py-16 w-full bg-[#383838] border-t border-[#ffffff0d]">
+            <div class="flex flex-col md:flex-row items-start gap-8 lg:gap-12 w-full max-w-[1440px]">
+                <!-- Brand column -->
+                <div class="flex flex-col w-full md:w-[280px] lg:w-[320px] items-start gap-6 flex-shrink-0">
+                    <img alt="IDispatch Solutions" class="w-40 h-auto"
+                        src="https://c.animaapp.com/mm4ywfojUyZ5K9/img/logo-design-final-01-1.svg" />
+                    <p class="font-normal text-slate-400 text-base leading-6 [font-family:'Geist',Helvetica]">
+                        Elevating transportation standards through professional, human-centered dispatching solutions
+                        for the global limousine industry.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a class="font-normal text-slate-400 text-base leading-6 [font-family:'Geist',Helvetica] hover:text-white transition-colors"
+                            href="#">
+                            LinkedIn
+                        </a>
+                        <a class="font-normal text-slate-400 text-base leading-6 [font-family:'Geist',Helvetica] hover:text-white transition-colors"
+                            href="#">
+                            Twitter
+                        </a>
+                        <a class="font-normal text-slate-400 text-base leading-6 [font-family:'Geist',Helvetica] hover:text-white transition-colors"
+                            href="#">
+                            Facebook
+                        </a>
+                    </div>
+                </div>
+                <!-- Links columns -->
+                <div class="flex flex-row gap-8 sm:gap-12 lg:gap-16 flex-1 flex-wrap">
+                    <!-- Content links -->
+                    <div class="flex flex-col items-start gap-4 min-w-[120px]">
+                        <div class="font-bold text-white text-base leading-6 [font-family:'Geist',Helvetica]">
+                            Content
+                        </div>
+                        <div class="flex flex-col items-start gap-2">
+                            <a class="font-normal text-slate-400 text-sm leading-5 [font-family:'Geist',Helvetica] hover:text-white transition-colors"
+                                href="#">
+                                Home
+                            </a>
+                            <a class="font-normal text-slate-400 text-sm leading-5 [font-family:'Geist',Helvetica] hover:text-white transition-colors"
+                                href="#">
+                                About Us
+                            </a>
+                            <a class="font-normal text-slate-400 text-sm leading-5 [font-family:'Geist',Helvetica] hover:text-white transition-colors"
+                                href="#">
+                                Services
+                            </a>
+                            <a class="font-normal text-slate-400 text-sm leading-5 [font-family:'Geist',Helvetica] hover:text-white transition-colors"
+                                href="#">
+                                Reviews
+                            </a>
+                            <a class="font-normal text-slate-400 text-sm leading-5 [font-family:'Geist',Helvetica] hover:text-white transition-colors"
+                                href="#">
+                                Blog
+                            </a>
+                            <a class="font-normal text-slate-400 text-sm leading-5 [font-family:'Geist',Helvetica] hover:text-white transition-colors"
+                                href="#">
+                                Contact
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Contact info -->
+                    <div class="flex flex-col items-start gap-4 min-w-[200px]">
+                        <div class="font-bold text-white text-base leading-6 [font-family:'Geist',Helvetica]">
+                            Contact
+                        </div>
+                        <div class="flex flex-col items-start gap-2">
+                            <p class="font-normal text-sm leading-5 [font-family:'Geist',Helvetica]">
+                                <span class="text-slate-400">
+                                    Executive Inquiries
+                                    <br />
+                                </span>
+                                <span class="text-white">
+                                    info@idispatchsolutions.com
+                                </span>
+                            </p>
+                            <p class="font-normal text-sm leading-5 [font-family:'Geist',Helvetica]">
+                                <span class="text-slate-400">
+                                    Enterprise &amp; Multi-City Operations
+                                    <br />
+                                </span>
+                                <span class="text-white">
+                                    enterprise@idispatchsolutions.com
+                                </span>
+                            </p>
+                            <span class="font-normal text-slate-400 text-sm leading-5 [font-family:'Geist',Helvetica]">
+                                +1 (800) DISPATCH
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer bottom bar -->
+            <div
+                class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full max-w-[1440px] pt-8 border-t border-[#ffffff0d]">
+                <p class="font-normal text-slate-400 text-xs leading-4 [font-family:'Inter',Helvetica]">
+                    © 2024 IDispatch Solutions. All rights reserved.
+                </p>
+                <div class="flex items-center gap-6">
+                    <a class="font-normal text-slate-400 text-xs leading-4 [font-family:'Inter',Helvetica] hover:text-white transition-colors"
+                        href="#">
+                        Privacy Policy
+                    </a>
+                    <a class="font-normal text-slate-400 text-xs leading-4 [font-family:'Inter',Helvetica] hover:text-white transition-colors"
+                        href="#">
+                        Terms of Service
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        const hamBtn = document.getElementById('ham-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamBtn.addEventListener('click', function () {
+            const isOpen = mobileMenu.classList.toggle('open');
+            hamBtn.classList.toggle('open', isOpen);
+            hamBtn.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        // Close menu on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
+                hamBtn.classList.remove('open');
+                hamBtn.setAttribute('aria-expanded', 'false');
+                hamBtn.focus();
+            }
+        });
+    </script>
+</body>
+
+</html>

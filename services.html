@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta charset="utf-8" />
+    <link href="globals.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        geist: ['Geist', 'Helvetica', 'sans-serif'],
+                        inter: ['Inter', 'Helvetica', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        /* FAQ accordion */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-answer.open {
+            max-height: 300px;
+        }
+
+        .faq-icon-plus {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.open .faq-icon-plus {
+            transform: rotate(45deg);
+        }
+
+        /* Services dropdown */
+        .services-dropdown {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-8px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .services-nav:hover .services-dropdown,
+        .services-dropdown:hover {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+
+        /* Mobile menu slide-in */
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        #mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Hamburger bar animation */
+        #hamburger.open .bar-top {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        #hamburger.open .bar-mid {
+            opacity: 0;
+        }
+
+        #hamburger.open .bar-bot {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .bar-top,
+        .bar-mid,
+        .bar-bot {
+            transition: transform 0.3s ease, opacity 0.2s ease;
+            transform-origin: center;
+        }
+    </style>
+    <script src="/load.js">
+    </script>
+    <script src="/static/anima.min.js" type="module">
+    </script>
+</head>
+
+<body class="bg-white">
+    <!-- ─── Top Bar (hidden on mobile) ─── -->
+    <div class="hidden md:flex items-center justify-between px-6 lg:px-24 py-2 bg-[#007771] w-full">
+        <div class="inline-flex items-center gap-4 lg:gap-6">
+            <div class="inline-flex items-center gap-1">
+                <img alt="phone" class="h-4 w-4" src="https://c.animaapp.com/mm4znbnp4lxs5r/img/svg.svg" />
+                <span class="font-geist text-white text-sm leading-[21px]">
+                    +1 222-555-33-99
+                </span>
+            </div>
+            <div class="w-px h-[23px] bg-[#ffffff1a]">
+            </div>
+            <div class="inline-flex items-center gap-1">
+                <img alt="email" class="h-3 w-4" src="https://c.animaapp.com/mm4znbnp4lxs5r/img/svg-1.svg" />
+                <span class="font-geist text-white text-sm leading-[21px]">
+                    support@idispatch.com
+                </span>
+            </div>
+        </div>
+        <div class="inline-flex items-center gap-4 lg:gap-6">
+            <div class="inline-flex items-center gap-1 cursor-pointer">
+                <img alt="language" class="w-5 h-5" src="https://c.animaapp.com/mm4znbnp4lxs5r/img/lang-svg.svg" />
+                <span class="font-geist text-white text-sm">
+                    EN
+                </span>
+                <img alt="arrow" class="w-4 h-4" src="https://c.animaapp.com/mm4znbnp4lxs5r/img/arrow-down-01.svg" />
+            </div>
+            <div class="w-px h-[23px] bg-[#ffffff1a]">
+            </div>
+            <div class="inline-flex items-center gap-2 cursor-pointer">
+                <span class="font-geist text-white text-sm">
+                    USD
+                </span>
+                <img alt="arrow" class="w-4 h-4" src="https://c.animaapp.com/mm4znbnp4lxs5r/img/arrow-down-01.svg" />
+            </div>
+        </div>
+    </div>
+    <!-- ─── Navigation ─── -->
+    <nav
+        class="flex items-center justify-between px-4 md:px-8 lg:px-24 py-4 md:py-5 bg-white border-b border-[#50576233] w-full sticky top-0 z-50">
+        <!-- Logo -->
+        <img alt="IDispatch Logo" class="w-[130px] md:w-[158px] h-8 md:h-10"
+            src="https://c.animaapp.com/mm4znbnp4lxs5r/img/container-2.svg" />
+        <!-- Desktop nav links -->
+        <div class="hidden lg:inline-flex items-center gap-5">
+            <a class="inline-flex flex-col items-center gap-1 px-2 rounded-lg group" href="#">
+                <span
+                    class="font-geist font-normal text-[#007771] text-base leading-6 group-hover:font-medium transition-all">
+                    Home
+                </span>
+                <div class="w-6 h-0.5 rounded-[50px] bg-transparent group-hover:bg-[#007771] transition-all">
+                </div>
+            </a>
+            <a class="inline-flex flex-col items-center gap-1 px-2 rounded-lg group" href="#">
+                <span
+                    class="font-geist font-normal text-[#007771] text-base leading-6 group-hover:font-medium transition-all">
+                    About Us
+                </span>
+                <div class="w-6 h-0.5 rounded-[50px] bg-transparent group-hover:bg-[#007771] transition-all">
+                </div>
+            </a>
+            <!-- Services with dropdown -->
+            <div class="services-nav relative inline-flex flex-col items-center gap-1 px-2 rounded-lg cursor-pointer">
+                <div class="inline-flex items-center gap-1">
+                    <span class="font-geist font-medium text-[#383838] text-base leading-6">
+                        Services
+                    </span>
+                    <img alt="arrow" class="w-3 h-3" src="https://c.animaapp.com/mm4znbnp4lxs5r/img/image.svg" />
+                </div>
+                <div class="w-6 h-0.5 bg-[#383838] rounded-[50px]">
+                </div>
+                <!-- Dropdown -->
+                <div
+                    class="services-dropdown absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white rounded-xl border border-[#00777133] shadow-[0px_15px_20px_#00000033,0px_-6px_20px_#00000014] min-w-[220px] z-50">
+                    <div class="flex items-center gap-3 px-4 py-3 hover:bg-[#f0faf9] transition-colors cursor-pointer">
+                        <img alt="icon" class="flex-shrink-0"
+                            src="https://c.animaapp.com/mm4znbnp4lxs5r/img/container.svg" />
+                        <span class="font-geist font-normal text-[#2f2f2f] text-base leading-6 whitespace-nowrap">
+                            Full Live Dispatch
+                        </span>
+                    </div>
+                    <div class="w-full h-px bg-[#00777133]">
+                    </div>
+                    <div class="flex items-center gap-3 px-4 py-3 hover:bg-[#f0faf9] transition-colors cursor-pointer">
+                        <img alt="icon" class="flex-shrink-0"
+                            src="https://c.animaapp.com/mm4znbnp4lxs5r/img/container-3.svg" />
+                        <span class="font-geist font-normal text-[#2f2f2f] text-base leading-6 whitespace-nowrap">
+                            On-Demand Dispatch
+                        </span>
+                    </div>
+                    <div class="w-full h-px bg-[#00777133]">
+                    </div>
+                    <div class="flex items-center gap-3 px-4 py-3 hover:bg-[#f0faf9] transition-colors cursor-pointer">
+                        <img alt="icon" class="flex-shrink-0"
+                            src="https://c.animaapp.com/mm4znbnp4lxs5r/img/container-5.svg" />
+                        <span class="font-geist font-normal text-[#2f2f2f] text-base leading-6 whitespace-nowrap">
+                            Hybrid Dispatch
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <a class="inline-flex flex-col items-center gap-1 px-2 rounded-lg group" href="#">
+                <span
+                    class="font-geist font-normal text-[#007771] text-base leading-6 group-hover:font-medium transition-all">
+                    Reviews
+                </span>
+                <div class="w-6 h-0.5 rounded-[50px] bg-transparent group-hover:bg-[#007771] transition-all">
+                </div>
+            </a>
+            <a class="inline-flex flex-col items-center gap-1 px-2 rounded-lg group" href="#">
+                <span
+                    class="font-geist font-normal text-[#007771] text-base leading-6 group-hover:font-medium transition-all">
+                    Blog
+                </span>
+                <div class="w-6 h-0.5 rounded-[50px] bg-transparent group-hover:bg-[#007771] transition-all">
+                </div>
+            </a>
+            <a class="inline-flex flex-col items-center gap-1 px-2 rounded-lg group" href="#">
+                <span
+                    class="font-geist font-normal text-[#007771] text-base leading-6 group-hover:font-medium transition-all">
+                    Contact
+                </span>
+                <div class="w-6 h-0.5 rounded-[50px] bg-transparent group-hover:bg-[#007771] transition-all">
+                </div>
+            </a>
+        </div>
+        <!-- Desktop CTA button -->
+        <button
+            class="hidden lg:flex items-center justify-center gap-2.5 px-6 xl:px-8 py-3 bg-[#3838380d] rounded-xl border border-[#383838] hover:bg-[#38383820] transition-colors cursor-pointer">
+            <span class="font-geist font-medium text-[#19253a] text-base leading-6 whitespace-nowrap">
+                Get Started
+            </span>
+        </button>
+        <!-- Tablet: show CTA, hide hamburger on lg+ -->
+        <div class="flex items-center gap-3 lg:hidden">
+            <button
+                class="hidden md:flex items-center justify-center gap-2 px-5 py-2.5 bg-[#3838380d] rounded-xl border border-[#383838] hover:bg-[#38383820] transition-colors cursor-pointer">
+                <span class="font-geist font-medium text-[#19253a] text-sm leading-5 whitespace-nowrap">
+                    Get Started
+                </span>
+            </button>
+            <!-- Hamburger button -->
+            <button aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu"
+                class="flex flex-col justify-center items-center w-10 h-10 gap-[5px] rounded-lg hover:bg-gray-100 transition-colors focus-visible:outline-2 focus-visible:outline-[#007771]"
+                id="hamburger">
+                <span class="bar-top block w-6 h-0.5 bg-[#383838] rounded-full">
+                </span>
+                <span class="bar-mid block w-6 h-0.5 bg-[#383838] rounded-full">
+                </span>
+                <span class="bar-bot block w-6 h-0.5 bg-[#383838] rounded-full">
+                </span>
+            </button>
+        </div>
+    </nav>
+    <!-- ─── Mobile Menu Overlay ─── -->
+    <div aria-label="Navigation menu" aria-modal="true"
+        class="fixed inset-0 z-[100] bg-white flex flex-col lg:hidden overflow-y-auto" id="mobile-menu" role="dialog">
+        <!-- Mobile menu header -->
+        <div class="flex items-center justify-between px-4 py-4 border-b border-[#50576233]">
+            <img alt="IDispatch Logo" class="w-[130px] h-8"
+                src="https://c.animaapp.com/mm4znbnp4lxs5r/img/container-2.svg" />
+            <button aria-label="Close menu"
+                class="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 transition-colors"
+                id="close-menu">
+                <svg class="w-5 h-5 text-[#383838]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                    <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile nav links -->
+        <nav class="flex flex-col px-4 py-6 gap-1">
+            <a class="font-geist font-medium text-[#007771] text-lg py-3 px-3 rounded-xl hover:bg-[#f0faf9] transition-colors"
+                href="#">
+                Home
+            </a>
+            <a class="font-geist font-medium text-[#007771] text-lg py-3 px-3 rounded-xl hover:bg-[#f0faf9] transition-colors"
+                href="#">
+                About Us
+            </a>
+            <!-- Services accordion in mobile -->
+            <div>
+                <button aria-expanded="false"
+                    class="w-full flex items-center justify-between font-geist font-medium text-[#383838] text-lg py-3 px-3 rounded-xl hover:bg-[#f0faf9] transition-colors"
+                    id="mobile-services-btn">
+                    Services
+                    <svg class="w-4 h-4 transition-transform" fill="none" id="mobile-services-arrow"
+                        stroke="currentColor" viewbox="0 0 24 24">
+                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                        </path>
+                    </svg>
+                </button>
+                <div class="hidden flex-col pl-4 gap-1 mt-1" id="mobile-services-sub">
+                    <a class="font-geist font-normal text-[#2f2f2f] text-base py-2.5 px-3 rounded-xl hover:bg-[#f0faf9] transition-colors"
+                        href="#">
+                        Full Live Dispatch
+                    </a>
+                    <a class="font-geist font-normal text-[#2f2f2f] text-base py-2.5 px-3 rounded-xl hover:bg-[#f0faf9] transition-colors"
+                        href="#">
+                        On-Demand Dispatch
+                    </a>
+                    <a class="font-geist font-normal text-[#2f2f2f] text-base py-2.5 px-3 rounded-xl hover:bg-[#f0faf9] transition-colors"
+                        href="#">
+                        Hybrid Dispatch
+                    </a>
+                </div>
+            </div>
+            <a class="font-geist font-medium text-[#007771] text-lg py-3 px-3 rounded-xl hover:bg-[#f0faf9] transition-colors"
+                href="#">
+                Reviews
+            </a>
+            <a class="font-geist font-medium text-[#007771] text-lg py-3 px-3 rounded-xl hover:bg-[#f0faf9] transition-colors"
+                href="#">
+                Blog
+            </a>
+            <a class="font-geist font-medium text-[#007771] text-lg py-3 px-3 rounded-xl hover:bg-[#f0faf9] transition-colors"
+                href="#">
+                Contact
+            </a>
+        </nav>
+        <div class="px-4 pb-8 mt-auto">
+            <button
+                class="w-full flex items-center justify-center gap-2.5 px-8 py-3.5 bg-[#007771] rounded-xl hover:bg-[#006660] transition-colors">
+                <span class="font-geist font-medium text-white text-base leading-6">
+                    Get Started
+                </span>
+            </button>
+        </div>
+    </div>
+    <!-- ─── Hero Section ─── -->
+    <section
+        class="relative flex items-center justify-center w-full min-h-[280px] md:min-h-[400px] lg:h-[508px] overflow-hidden">
+        <img alt="Hero background" class="absolute inset-0 w-full h-full object-cover"
+            src="https://c.animaapp.com/mm4znbnp4lxs5r/img/image-11.png" />
+        <div class="absolute inset-0 bg-gradient-to-br from-[#007771]/10 via-white/5 to-[#007771]/10">
+        </div>
+        <div
+            class="relative z-10 flex flex-col items-center gap-3 md:gap-4 px-4 md:px-8 py-12 md:py-0 text-center max-w-[900px] w-full">
+            <div class="inline-flex items-center justify-center gap-2.5 px-4 py-2 md:py-3 bg-[#ffffff1a] rounded-full">
+                <span class="font-inter font-medium text-[#ffffffe6] text-xs md:text-sm leading-5 whitespace-nowrap">
+                    SCALABLE SOLUTIONS
+                </span>
+            </div>
+            <h1
+                class="font-inter font-bold text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center leading-tight lg:leading-[60px]">
+                STRUCTURED LIVE DISPATCH SOLUTIONS
+            </h1>
+            <p
+                class="font-inter font-normal text-white text-base md:text-lg lg:text-xl text-center leading-relaxed lg:leading-[32.5px] max-w-[600px]">
+                IDispatch Solutions offers three scalable service models aligned with your fleet size and operational
+                goals.
+            </p>
+        </div>
+    </section>
+    <!-- ─── Services Section ─── -->
+    <section class="relative w-full bg-white py-16 md:py-20 lg:py-[108px]">
+        <div class="max-w-[1178px] mx-auto px-4 md:px-8 lg:px-6">
+            <div class="flex flex-col md:flex-row items-stretch gap-6 md:gap-8">
+                <!-- Card 1: Full Live Dispatch -->
+                <div
+                    class="flex-1 flex flex-col items-start gap-6 p-5 md:p-6 bg-white rounded-2xl border border-gray-100 shadow-[0px_15px_20px_#0000000d] hover:shadow-[0px_20px_30px_#0000001a] transition-shadow">
+                    <div class="flex flex-col items-start gap-5 md:gap-6 w-full">
+                        <img alt="Full Live Dispatch" class="w-14 h-14 md:w-16 md:h-16"
+                            src="https://c.animaapp.com/mm4znbnp4lxs5r/img/container-6.svg" />
+                        <div class="flex flex-col items-start gap-4 md:gap-5 w-full">
+                            <h3 class="font-geist font-bold text-[#2f2f2f] text-xl md:text-2xl leading-8">
+                                Full Live Dispatch
+                            </h3>
+                            <p class="font-geist font-normal text-gray-500 text-sm md:text-base leading-[26px]">
+                                Complete 24/7 operational coverage without maintaining an internal dispatch team.
+                            </p>
+                        </div>
+                    </div>
+                    <button
+                        class="w-full h-11 md:h-12 flex items-center justify-center gap-2 bg-[#007771] rounded-[10px] shadow-[0px_2px_4px_-2px_#00777133,0px_4px_6px_-1px_#00777133] hover:bg-[#006660] transition-colors mt-auto">
+                        <span class="font-geist font-medium text-white text-sm md:text-base leading-6">
+                            Learn More
+                        </span>
+                        <img alt="arrow" class="w-5 h-5" src="https://c.animaapp.com/mm4znbnp4lxs5r/img/icon.svg" />
+                    </button>
+                </div>
+                <!-- Card 2: On-Demand Dispatch -->
+                <div
+                    class="flex-1 flex flex-col items-start gap-6 p-5 md:p-6 bg-white rounded-2xl border border-gray-100 shadow-[0px_15px_20px_#0000000d] hover:shadow-[0px_20px_30px_#0000001a] transition-shadow">
+                    <div class="flex flex-col items-start gap-5 md:gap-6 w-full">
+                        <img alt="On-Demand Dispatch" class="w-14 h-14 md:w-16 md:h-16"
+                            src="https://c.animaapp.com/mm4znbnp4lxs5r/img/container-9.svg" />
+                        <div class="flex flex-col items-start gap-4 md:gap-5 w-full">
+                            <h3 class="font-geist font-bold text-[#2f2f2f] text-xl md:text-2xl leading-8">
+                                On-Demand Dispatch
+                            </h3>
+                            <p class="font-geist font-normal text-gray-500 text-sm md:text-base leading-[26px]">
+                                Flexible support for overflow, after-hours, and peak demand coverage.
+                            </p>
+                        </div>
+                    </div>
+                    <button
+                        class="w-full h-11 md:h-12 flex items-center justify-center gap-2 bg-[#007771] rounded-[10px] shadow-[0px_2px_4px_-2px_#00777133,0px_4px_6px_-1px_#00777133] hover:bg-[#006660] transition-colors mt-auto">
+                        <span class="font-geist font-medium text-white text-sm md:text-base leading-6">
+                            Learn More
+                        </span>
+                        <img alt="arrow" class="w-5 h-5" src="https://c.animaapp.com/mm4znbnp4lxs5r/img/icon.svg" />
+                    </button>
+                </div>
+                <!-- Card 3: Hybrid Dispatch -->
+                <div
+                    class="flex-1 flex flex-col items-start gap-6 p-5 md:p-6 bg-white rounded-2xl border border-gray-100 shadow-[0px_15px_20px_#0000000d] hover:shadow-[0px_20px_30px_#0000001a] transition-shadow">
+                    <div class="flex flex-col items-start gap-5 md:gap-6 w-full">
+                        <img alt="Hybrid Dispatch" class="w-14 h-14 md:w-16 md:h-16"
+                            src="https://c.animaapp.com/mm4znbnp4lxs5r/img/container-7.svg" />
+                        <div class="flex flex-col items-start gap-4 md:gap-5 w-full">
+                            <h3 class="font-geist font-bold text-[#2f2f2f] text-xl md:text-2xl leading-8">
+                                Hybrid Dispatch
+                            </h3>
+                            <p class="font-geist font-normal text-gray-500 text-sm md:text-base leading-[26px]">
+                                Human-led dispatch supported by AI-powered workflow tools.
+                            </p>
+                        </div>
+                    </div>
+                    <button
+                        class="w-full h-11 md:h-12 flex items-center justify-center gap-2 bg-[#007771] rounded-[10px] shadow-[0px_2px_4px_-2px_#00777133,0px_4px_6px_-1px_#00777133] hover:bg-[#006660] transition-colors mt-auto">
+                        <span class="font-geist font-medium text-white text-sm md:text-base leading-6">
+                            Learn More
+                        </span>
+                        <img alt="arrow" class="w-5 h-5" src="https://c.animaapp.com/mm4znbnp4lxs5r/img/icon.svg" />
+                    </button>
+                </div>
+            </div>
+            <!-- CTA Button -->
+            <div class="flex justify-center mt-10 md:mt-16">
+                <button
+                    class="flex items-center gap-2.5 px-5 md:px-8 py-3.5 md:py-4 bg-[#007771] rounded-[10px] shadow-[0px_4px_6px_-4px_#00777133,0px_10px_15px_-3px_#00777133] hover:bg-[#006660] transition-colors">
+                    <span class="font-geist font-medium text-white text-sm md:text-base leading-6 text-center">
+                        Request a Confidential Consultation
+                    </span>
+                    <img alt="arrow" class="w-5 h-5 flex-shrink-0"
+                        src="https://c.animaapp.com/mm4znbnp4lxs5r/img/icon.svg" />
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- ─── FAQ Section ─── -->
+    <section class="w-full bg-white py-16 md:py-24">
+        <div class="max-w-4xl mx-auto px-4 md:px-8 lg:px-6">
+            <h2
+                class="font-geist font-bold text-slate-900 text-3xl sm:text-4xl md:text-5xl text-center leading-tight md:leading-[48px] mb-12 md:mb-24">
+                Frequently Asked Questions
+            </h2>
+            <div class="flex flex-col gap-4 md:gap-6">
+                <!-- FAQ Item 1 - Open by default -->
+                <div
+                    class="faq-item open bg-white rounded-2xl md:rounded-3xl overflow-hidden border border-[#f8f7fd] shadow-[0px_2px_10px_-2px_#00000005,0px_4px_20px_-2px_#0000000d]">
+                    <button class="faq-trigger flex items-center justify-between w-full p-5 md:p-8 text-left gap-4"
+                        onclick="toggleFaq(this)">
+                        <span class="font-geist font-bold text-slate-800 text-base md:text-xl leading-7">
+                            Is your service really 24/7?
+                        </span>
+                        <img alt="toggle" class="faq-icon-plus w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+                            src="https://c.animaapp.com/mm4znbnp4lxs5r/img/minus-sign.svg" />
+                    </button>
+                    <div class="faq-answer open px-5 md:px-8 pb-5 md:pb-8">
+                        <p class="font-geist font-light text-slate-500 text-sm md:text-base leading-[26px]">
+                            Yes, we provide round-the-clock live dispatching every single day of the year, including
+                            holidays. Our teams work in rotating shifts to ensure peak performance at any hour.
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ Item 2 - Open by default -->
+                <div
+                    class="faq-item open bg-white rounded-2xl md:rounded-3xl overflow-hidden border border-[#f8f7fd] shadow-[0px_2px_10px_-2px_#00000005,0px_4px_20px_-2px_#0000000d]">
+                    <button class="faq-trigger flex items-center justify-between w-full p-5 md:p-8 text-left gap-4"
+                        onclick="toggleFaq(this)">
+                        <span class="font-geist font-bold text-slate-800 text-base md:text-xl leading-7">
+                            Do you use automated voices?
+                        </span>
+                        <img alt="toggle" class="faq-icon-plus w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+                            src="https://c.animaapp.com/mm4znbnp4lxs5r/img/minus-sign.svg" />
+                    </button>
+                    <div class="faq-answer open px-5 md:px-8 pb-5 md:pb-8">
+                        <p class="font-geist font-light text-slate-500 text-sm md:text-base leading-[26px]">
+                            No. Every call is answered by a trained, professional human dispatcher who acts as a direct
+                            extension of your team. We believe human touch is critical for premium service.
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ Item 3 - Closed by default -->
+                <div
+                    class="faq-item bg-white rounded-2xl md:rounded-3xl overflow-hidden border border-slate-100 shadow-[0px_2px_10px_-2px_#00000005,0px_4px_20px_-2px_#0000000d]">
+                    <button class="faq-trigger flex items-center justify-between w-full p-5 md:p-8 text-left gap-4"
+                        onclick="toggleFaq(this)">
+                        <span class="font-geist font-bold text-slate-800 text-base md:text-xl leading-7">
+                            Can you handle large fleets?
+                        </span>
+                        <svg class="faq-icon-plus w-5 h-5 md:w-6 md:h-6 flex-shrink-0 text-slate-400" fill="none"
+                            stroke="currentColor" viewbox="0 0 24 24">
+                            <path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-5 md:px-8">
+                        <p
+                            class="font-geist font-light text-slate-500 text-sm md:text-base leading-[26px] pb-5 md:pb-8">
+                            Absolutely. Our infrastructure is built to scale with fleets of any size — from boutique
+                            operators to enterprise-level transportation companies with hundreds of vehicles.
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ Item 4 - Closed by default -->
+                <div
+                    class="faq-item bg-white rounded-2xl md:rounded-3xl overflow-hidden border border-slate-100 shadow-[0px_2px_10px_-2px_#00000005,0px_4px_20px_-2px_#0000000d]">
+                    <button class="faq-trigger flex items-center justify-between w-full p-5 md:p-8 text-left gap-4"
+                        onclick="toggleFaq(this)">
+                        <span class="font-geist font-bold text-slate-800 text-base md:text-xl leading-7">
+                            Will I have a dedicated manager?
+                        </span>
+                        <svg class="faq-icon-plus w-5 h-5 md:w-6 md:h-6 flex-shrink-0 text-slate-400" fill="none"
+                            stroke="currentColor" viewbox="0 0 24 24">
+                            <path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-5 md:px-8">
+                        <p
+                            class="font-geist font-light text-slate-500 text-sm md:text-base leading-[26px] pb-5 md:pb-8">
+                            Yes. Every client is assigned a dedicated account manager who serves as your primary point
+                            of contact, ensuring continuity, accountability, and personalized service.
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ Item 5 - Closed by default -->
+                <div
+                    class="faq-item bg-white rounded-2xl md:rounded-3xl overflow-hidden border border-slate-100 shadow-[0px_2px_10px_-2px_#00000005,0px_4px_20px_-2px_#0000000d]">
+                    <button class="faq-trigger flex items-center justify-between w-full p-5 md:p-8 text-left gap-4"
+                        onclick="toggleFaq(this)">
+                        <span class="font-geist font-bold text-slate-800 text-base md:text-xl leading-7">
+                            How is pricing calculated?
+                        </span>
+                        <svg class="faq-icon-plus w-5 h-5 md:w-6 md:h-6 flex-shrink-0 text-slate-400" fill="none"
+                            stroke="currentColor" viewbox="0 0 24 24">
+                            <path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-5 md:px-8">
+                        <p
+                            class="font-geist font-light text-slate-500 text-sm md:text-base leading-[26px] pb-5 md:pb-8">
+                            Pricing is based on your fleet size, service model, and operational hours. We offer
+                            transparent, tiered pricing with no hidden fees. Contact us for a custom quote tailored to
+                            your needs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ─── CTA Banner Section ─── -->
+    <section class="w-full bg-white py-12 md:py-24 px-4 md:px-8 lg:px-24">
+        <div class="relative w-full rounded-2xl md:rounded-[32px] overflow-hidden">
+            <img alt="CTA background" class="absolute inset-0 w-full h-full object-cover"
+                src="https://c.animaapp.com/mm4znbnp4lxs5r/img/image-6.png" />
+            <div class="absolute inset-0 bg-gradient-to-br from-[#007771] to-[#383838]">
+            </div>
+            <div
+                class="relative z-10 flex flex-col items-center gap-8 md:gap-12 px-5 md:px-12 py-14 md:py-20 lg:py-[120px]">
+                <div class="flex flex-col items-center gap-3 md:gap-4">
+                    <h2
+                        class="font-geist font-semibold text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center tracking-tight leading-tight lg:leading-[62.4px] max-w-[662px]">
+                        Strengthen Your Dispatch Operations Today
+                    </h2>
+                    <p
+                        class="font-geist font-normal text-white text-sm md:text-base text-center leading-6 max-w-[449px]">
+                        Partner with IDispatch Solutions and focus on growing your fleet while we handle the logistics.
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row items-center gap-4 md:gap-6 w-full sm:w-auto">
+                    <button
+                        class="w-full sm:w-auto inline-flex items-center justify-center gap-3 pl-3 pr-6 md:pr-8 py-3 bg-white rounded-xl hover:bg-gray-50 transition-colors">
+                        <img alt="icon" class="w-8 h-8 flex-shrink-0"
+                            src="https://c.animaapp.com/mm4znbnp4lxs5r/img/fi-6941884.svg" />
+                        <span
+                            class="font-geist font-semibold text-[#383838] text-base md:text-lg tracking-tight leading-6 whitespace-nowrap">
+                            Request a Confidential Consultation
+                        </span>
+                    </button>
+                    <button
+                        class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 md:px-8 py-3 bg-[#ffffff0d] rounded-xl border border-white hover:bg-[#ffffff1a] transition-colors">
+                        <span
+                            class="font-geist font-medium text-white text-sm md:text-base leading-6 whitespace-nowrap">
+                            Partner With IDispatch
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ─── Footer ─── -->
+    <footer
+        class="flex flex-col gap-10 md:gap-16 px-4 md:px-8 lg:px-24 py-12 md:py-16 bg-[#383838] border-t border-[#ffffff0d] w-full">
+        <div class="flex flex-col md:flex-row items-start gap-8 md:gap-12 w-full max-w-[1440px]">
+            <!-- Brand Column -->
+            <div class="flex flex-col w-full md:w-[280px] lg:w-[320px] items-start gap-5 md:gap-6">
+                <img alt="IDispatch Logo" class="w-[130px] md:w-[158px] h-8 md:h-10"
+                    src="https://c.animaapp.com/mm4znbnp4lxs5r/img/container-2.svg" />
+                <p class="font-geist font-normal text-slate-400 text-sm md:text-base leading-6">
+                    Elevating transportation standards through professional, human-centered dispatching solutions for
+                    the global limousine industry.
+                </p>
+                <div class="flex items-center gap-4">
+                    <a class="font-geist font-normal text-slate-400 text-sm md:text-base leading-6 hover:text-white transition-colors"
+                        href="#">
+                        LinkedIn
+                    </a>
+                    <a class="font-geist font-normal text-slate-400 text-sm md:text-base leading-6 hover:text-white transition-colors"
+                        href="#">
+                        Twitter
+                    </a>
+                    <a class="font-geist font-normal text-slate-400 text-sm md:text-base leading-6 hover:text-white transition-colors"
+                        href="#">
+                        Facebook
+                    </a>
+                </div>
+            </div>
+            <!-- Content + Contact columns wrapper -->
+            <div class="flex flex-row gap-8 md:gap-12 flex-1 w-full">
+                <!-- Content Column -->
+                <div class="flex flex-col items-start gap-4 flex-1">
+                    <span class="font-geist font-bold text-white text-sm md:text-base leading-6">
+                        Content
+                    </span>
+                    <div class="flex flex-col gap-2">
+                        <a class="font-geist font-normal text-slate-400 text-sm leading-5 hover:text-white transition-colors"
+                            href="#">
+                            Home
+                        </a>
+                        <a class="font-geist font-normal text-slate-400 text-sm leading-5 hover:text-white transition-colors"
+                            href="#">
+                            About Us
+                        </a>
+                        <a class="font-geist font-normal text-slate-400 text-sm leading-5 hover:text-white transition-colors"
+                            href="#">
+                            Services
+                        </a>
+                        <a class="font-geist font-normal text-slate-400 text-sm leading-5 hover:text-white transition-colors"
+                            href="#">
+                            Reviews
+                        </a>
+                        <a class="font-geist font-normal text-slate-400 text-sm leading-5 hover:text-white transition-colors"
+                            href="#">
+                            Blog
+                        </a>
+                        <a class="font-geist font-normal text-slate-400 text-sm leading-5 hover:text-white transition-colors"
+                            href="#">
+                            Contact
+                        </a>
+                    </div>
+                </div>
+                <!-- Contact Column -->
+                <div class="flex flex-col items-start gap-4 flex-1">
+                    <span class="font-geist font-bold text-white text-sm md:text-base leading-6">
+                        Contact
+                    </span>
+                    <div class="flex flex-col gap-2">
+                        <p class="font-geist font-normal text-sm leading-5">
+                            <span class="text-slate-400">
+                                Executive Inquiries
+                                <br />
+                            </span>
+                            <span class="text-white break-all">
+                                info@idispatchsolutions.com
+                            </span>
+                        </p>
+                        <p class="font-geist font-normal text-sm leading-5">
+                            <span class="text-slate-400">
+                                Enterprise &amp; Multi-City
+                                <br />
+                            </span>
+                            <span class="text-white break-all">
+                                enterprise@idispatchsolutions.com
+                            </span>
+                        </p>
+                        <span class="font-geist font-normal text-slate-400 text-sm leading-5">
+                            +1 (800) DISPATCH
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Bottom -->
+        <div
+            class="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full max-w-[1440px] pt-6 md:pt-8 border-t border-[#ffffff0d] gap-3 sm:gap-0">
+            <p class="font-inter font-normal text-slate-400 text-xs leading-4">
+                © 2024 IDispatch Solutions. All rights reserved.
+            </p>
+            <div class="flex items-center gap-4 md:gap-6">
+                <a class="font-inter font-normal text-slate-400 text-xs leading-4 hover:text-white transition-colors"
+                    href="#">
+                    Privacy Policy
+                </a>
+                <a class="font-inter font-normal text-slate-400 text-xs leading-4 hover:text-white transition-colors"
+                    href="#">
+                    Terms of Service
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // ── FAQ accordion ──
+        function toggleFaq(trigger) {
+            const item = trigger.closest('.faq-item');
+            const answer = item.querySelector('.faq-answer');
+            const isOpen = item.classList.contains('open');
+            if (isOpen) {
+                item.classList.remove('open');
+                answer.classList.remove('open');
+            } else {
+                item.classList.add('open');
+                answer.classList.add('open');
+            }
+        }
+
+        // ── Mobile menu ──
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-menu');
+
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            hamburger.classList.add('open');
+            hamburger.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+            closeBtn.focus();
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            hamburger.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+            hamburger.focus();
+        }
+
+        hamburger.addEventListener('click', openMenu);
+        closeBtn.addEventListener('click', closeMenu);
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+                closeMenu();
+            }
+        });
+
+        // Close menu when a nav link is tapped
+        mobileMenu.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // ── Mobile Services sub-menu ──
+        const mobileServicesBtn = document.getElementById('mobile-services-btn');
+        const mobileServicesSub = document.getElementById('mobile-services-sub');
+        const mobileServicesArrow = document.getElementById('mobile-services-arrow');
+
+        mobileServicesBtn.addEventListener('click', function () {
+            const isOpen = mobileServicesSub.classList.contains('flex');
+            if (isOpen) {
+                mobileServicesSub.classList.remove('flex');
+                mobileServicesSub.classList.add('hidden');
+                mobileServicesArrow.style.transform = '';
+                mobileServicesBtn.setAttribute('aria-expanded', 'false');
+            } else {
+                mobileServicesSub.classList.remove('hidden');
+                mobileServicesSub.classList.add('flex');
+                mobileServicesArrow.style.transform = 'rotate(180deg)';
+                mobileServicesBtn.setAttribute('aria-expanded', 'true');
+            }
+        });
+    </script>
+</body>
+
+</html>

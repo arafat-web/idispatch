@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script>
+        tailwind.config = { 
+            theme: { 
+                extend: {} 
+            }, 
+            plugins: [] 
+        };
+    </script>
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            opacity: 1;
+        }
+        
+        button {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        /* Nav Links hover effect */
+        nav span {
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #007771;
+        }
+        
+        /* Cards hover effect */
+        .card-hover {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 119, 113, 0.15);
+        }
+        
+        /* FAQ accordion animations */
+        .faq-content {
+            opacity: 0;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+        }
+        
+        .faq-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+
+        /* Floating cards base styles */
+        .floating-card {
+            transition: all 0.3s ease;
+        }
+
+        .floating-card:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex flex-col items-start w-full overflow-x-hidden">
+        <!-- TOP BAR -->
+        <div class="hidden md:flex items-center justify-between w-full px-6 lg:px-24 py-2 bg-[#007771]">
+            <div class="flex items-center gap-4 lg:gap-6">
+                <div class="flex items-center gap-1">
+                    <img class="w-4 h-4" src="https://c.animaapp.com/mm4wgetn2S24DE/img/svg.svg" />
+                    <span class="font-['Geist',Helvetica] font-normal text-white text-sm leading-[21px]">
+                        +1 222-555-33-99
+                    </span>
+                </div>
+                <div class="w-px h-[23px] bg-[#ffffff1a]">
+                </div>
+                <div class="flex items-center gap-1">
+                    <img class="w-4 h-3" src="https://c.animaapp.com/mm4wgetn2S24DE/img/svg-1.svg" />
+                    <span class="font-['Geist',Helvetica] font-normal text-white text-sm leading-[21px]">
+                        support@idispatch.com
+                    </span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 lg:gap-6">
+                <div class="flex items-center gap-1">
+                    <img class="w-5 h-5" src="https://c.animaapp.com/mm4wgetn2S24DE/img/lang-svg.svg" />
+                    <span class="font-['Geist',Helvetica] font-normal text-white text-sm">
+                        EN
+                    </span>
+                    <img class="w-4 h-4" src="https://c.animaapp.com/mm4wgetn2S24DE/img/arrow-down-01.svg" />
+                </div>
+                <div class="w-px h-[23px] bg-[#ffffff1a]">
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="font-['Geist',Helvetica] font-normal text-white text-sm">
+                        USD
+                    </span>
+                    <img class="w-4 h-4" src="https://c.animaapp.com/mm4wgetn2S24DE/img/arrow-down-01.svg" />
+                </div>
+            </div>
+        </div>
+        <!-- MAIN NAV -->
+        <nav
+            class="flex items-center justify-between w-full px-4 sm:px-8 lg:px-24 py-4 lg:py-5 bg-white border-b border-[#50576233] sticky top-0 z-50">
+            <img class="w-[120px] sm:w-[158px] h-auto"
+                src="https://c.animaapp.com/mm4wgetn2S24DE/img/logo-design-final-01-1.svg" />
+            <!-- Desktop Nav Links -->
+            <div class="hidden lg:flex items-center gap-5">
+                <div class="flex flex-col items-center gap-1 px-2 transition-all group cursor-pointer hover:text-[#007771]">
+                    <span class="font-['Geist',Helvetica] font-medium text-[#383838] text-base leading-6 group-hover:text-[#007771] transition-colors">
+                        Home
+                    </span>
+                    <div class="w-6 h-0.5 bg-[#383838] rounded-[50px] group-hover:bg-[#007771] transition-colors">
+                    </div>
+                </div>
+                <div class="flex flex-col items-center gap-1 px-2 transition-all group cursor-pointer hover:text-[#007771]">
+                    <span class="font-['Geist',Helvetica] font-normal text-[#007771] text-base leading-6 transition-colors">
+                        About Us
+                    </span>
+                    <div class="w-6 h-0.5 rounded-[50px] group-hover:bg-[#007771] transition-colors">
+                    </div>
+                </div>
+                <div class="flex flex-col items-center gap-1 px-2 transition-all group cursor-pointer hover:text-[#007771]">
+                    <div class="flex items-center gap-1">
+                        <span class="font-['Geist',Helvetica] font-normal text-[#007771] text-base leading-6 transition-colors">
+                            Services
+                        </span>
+                        <img class="w-3 h-3 group-hover:rotate-180 transition-transform" src="https://c.animaapp.com/mm4wgetn2S24DE/img/image.svg" />
+                    </div>
+                    <div class="w-6 h-0.5 rounded-[50px] group-hover:bg-[#007771] transition-colors">
+                    </div>
+                </div>
+                <div class="flex flex-col items-center gap-1 px-2 transition-all group cursor-pointer hover:text-[#007771]">
+                    <span class="font-['Geist',Helvetica] font-normal text-[#007771] text-base leading-6 transition-colors">
+                        Reviews
+                    </span>
+                    <div class="w-6 h-0.5 rounded-[50px] group-hover:bg-[#007771] transition-colors">
+                    </div>
+                </div>
+                <div class="flex flex-col items-center gap-1 px-2 transition-all group cursor-pointer hover:text-[#007771]">
+                    <span class="font-['Geist',Helvetica] font-normal text-[#007771] text-base leading-6 transition-colors">
+                        Blog
+                    </span>
+                    <div class="w-6 h-0.5 rounded-[50px] group-hover:bg-[#007771] transition-colors">
+                    </div>
+                </div>
+                <div class="flex flex-col items-center gap-1 px-2 transition-all group cursor-pointer hover:text-[#007771]">
+                    <span class="font-['Geist',Helvetica] font-normal text-[#007771] text-base leading-6 transition-colors">
+                        Contact
+                    </span>
+                    <div class="w-6 h-0.5 rounded-[50px] group-hover:bg-[#007771] transition-colors">
+                    </div>
+                </div>
+            </div>
+            <!-- Desktop CTA -->
+            <button
+                class="hidden lg:flex items-center justify-center gap-2.5 px-6 py-3 bg-[#3838380d] rounded-xl border border-solid border-[#383838] hover:bg-[#383838] hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
+                <span class="font-['Geist',Helvetica] font-medium text-[#19253a] hover:text-white text-base leading-6 transition-colors">
+                    Get Started
+                </span>
+            </button>
+            <!-- Mobile Hamburger -->
+            <button aria-label="Toggle navigation menu" class="lg:hidden flex flex-col gap-1.5 p-2" id="menu-toggle">
+                <span class="block w-6 h-0.5 bg-[#383838]">
+                </span>
+                <span class="block w-6 h-0.5 bg-[#383838]">
+                </span>
+                <span class="block w-6 h-0.5 bg-[#383838]">
+                </span>
+            </button>
+        </nav>
+        <!-- Mobile Menu Drawer -->
+        <div class="hidden w-full bg-white border-b border-[#50576233] px-4 py-4 flex-col gap-1 z-40" id="mobile-menu">
+            <a class="block font-['Geist',Helvetica] font-medium text-[#383838] text-base py-3 border-b border-gray-100"
+                href="#">
+                Home
+            </a>
+            <a class="block font-['Geist',Helvetica] font-normal text-[#007771] text-base py-3 border-b border-gray-100"
+                href="#">
+                About Us
+            </a>
+            <a class="block font-['Geist',Helvetica] font-normal text-[#007771] text-base py-3 border-b border-gray-100"
+                href="#">
+                Services
+            </a>
+            <a class="block font-['Geist',Helvetica] font-normal text-[#007771] text-base py-3 border-b border-gray-100"
+                href="#">
+                Reviews
+            </a>
+            <a class="block font-['Geist',Helvetica] font-normal text-[#007771] text-base py-3 border-b border-gray-100"
+                href="#">
+                Blog
+            </a>
+            <a class="block font-['Geist',Helvetica] font-normal text-[#007771] text-base py-3 border-b border-gray-100"
+                href="#">
+                Contact
+            </a>
+            <button
+                class="mt-3 flex items-center justify-center gap-2.5 px-6 py-3 bg-[#3838380d] rounded-xl border border-solid border-[#383838] w-full hover:bg-[#383838] hover:text-white transition-all duration-300">
+                <span class="font-['Geist',Helvetica] font-medium text-[#19253a] hover:text-white text-base leading-6 transition-colors">
+                    Get Started
+                </span>
+            </button>
+        </div>
+        <!-- HERO SECTION -->
+        <section class="relative w-full bg-white overflow-hidden">
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(761px,100vw)] h-[min(761px,100vw)] rounded-full blur-[250px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,255,255,0.4)_0%,rgba(37,99,235,0.4)_100%)] pointer-events-none">
+            </div>
+            <div class="relative max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-24 py-12 lg:py-16">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    <!-- Left: Text -->
+                    <div class="flex flex-col gap-6 lg:gap-8 animate-on-scroll">
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-2 bg-[#3838380d] rounded-full border border-solid border-[#38383833] w-fit">
+                            <img class="flex-shrink-0"
+                                src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-25.svg" />
+                            <p
+                                class="font-['Geist',Helvetica] font-bold text-[#383838] text-xs tracking-[1.20px] leading-4">
+                                HUMAN-OPERATED • RELIABLE • SCALABLE
+                            </p>
+                        </div>
+                        <img class="w-full max-w-[608px] h-auto"
+                            src="https://c.animaapp.com/mm4wgetn2S24DE/img/24-7-professional-live-dispatch-services-.svg" />
+                        <p
+                            class="font-['Geist',Helvetica] font-normal text-gray-500 text-lg sm:text-xl leading-[30px] max-w-[560px]">
+                            Our Professional Dispatch Team Ensures Seamless, Reliable, and Secure Business Operations.
+                        </p>
+                        <div class="flex flex-wrap gap-4 sm:gap-6">
+                            <div class="flex items-center gap-2 stagger-item">
+                                <img class="w-5 h-5 flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/icon.svg" />
+                                <span class="font-['Geist',Helvetica] font-medium text-[#2f2f2f] text-base leading-6">
+                                    Human-Operated
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-2 stagger-item">
+                                <img class="w-5 h-5 flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/icon.svg" />
+                                <span class="font-['Geist',Helvetica] font-medium text-[#2f2f2f] text-base leading-6">
+                                    Reliable
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-2 stagger-item">
+                                <img class="w-5 h-5 flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/icon.svg" />
+                                <span class="font-['Geist',Helvetica] font-medium text-[#2f2f2f] text-base leading-6">
+                                    Scalable
+                                </span>
+                            </div>
+                        </div>
+                        <p
+                            class="font-['Geist',Helvetica] font-normal text-gray-500 text-base leading-[26px] max-w-[571px]">
+                            IDispatch Solutions provides structured, real-time live dispatch services built exclusively
+                            for limousine companies, executive car services, airport transportation providers, and fleet
+                            operators worldwide.
+                        </p>
+                        <div class="flex flex-wrap gap-3 sm:gap-4">
+                            <div class="flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 bg-[#007771] rounded-full flex-shrink-0">
+                                </div>
+                                <span class="font-['Geist',Helvetica] font-normal text-[#2f2f2f] text-sm leading-5">
+                                    We answer your calls
+                                </span>
+                            </div>
+                            <div class="w-px h-4 bg-gray-200 hidden sm:block self-center">
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 bg-[#007771] rounded-full flex-shrink-0">
+                                </div>
+                                <span class="font-['Geist',Helvetica] font-normal text-[#2f2f2f] text-sm leading-5">
+                                    We manage your reservations
+                                </span>
+                            </div>
+                            <div class="w-px h-4 bg-gray-200 hidden sm:block self-center">
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 bg-[#007771] rounded-full flex-shrink-0">
+                                </div>
+                                <span class="font-['Geist',Helvetica] font-normal text-[#2f2f2f] text-sm leading-5">
+                                    We coordinate your drivers
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button
+                                class="flex items-center justify-center gap-2 bg-[#007771] rounded-[10px] shadow-[0px_4px_6px_-4px_#00777133,0px_10px_15px_-3px_#00777133] px-6 py-4 w-full sm:w-auto hover:bg-[#006b65] hover:shadow-[0px_8px_16px_-4px_#00777133] transition-all duration-300">
+                                <span class="font-['Geist',Helvetica] font-medium text-white text-base leading-6">
+                                    Request a Confidential Consultation
+                                </span>
+                                <img class="w-5 h-5 flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/icon-4.svg" />
+                            </button>
+                            <button
+                                class="flex items-center justify-center rounded-[10px] border-2 border-solid border-[#007771] px-8 py-4 w-full sm:w-auto hover:bg-[#007771] hover:text-white transition-all duration-300 text-[#007771]">
+                                <span class="font-['Geist',Helvetica] font-medium text-base leading-6">
+                                    Learn More
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Right: Hero image with floating cards (desktop only) -->
+                    <div class="relative w-full hidden lg:block">
+                        <div
+                            class="w-full aspect-[624/700] bg-[url(https://c.animaapp.com/mm4wgetn2S24DE/img/container-38.svg)] bg-[100%_100%] relative animate-on-scroll">
+                            <!-- Incoming Call card -->
+                            <div
+                                class="flex flex-col w-[235px] items-start pt-[25px] pb-px px-[25px] absolute top-16 left-8 bg-[#ffffff1a] rounded-2xl border border-solid border-[#ffffff33] shadow-[0px_25px_50px_-12px_#00000040] floating-card transition-all hover:shadow-[0px_30px_60px_-12px_#00000060] hover:border-[#ffffff66]">
+                                <div class="flex h-[68px] items-start gap-4 w-full">
+                                    <img class="w-12 h-12 flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-33.svg" />
+                                    <div class="flex-1 min-w-0">
+                                        <div
+                                            class="font-['Inter',Helvetica] font-normal text-[#ffffffe6] text-sm leading-5">
+                                            Incoming Call
+                                        </div>
+                                        <p
+                                            class="font-['Inter',Helvetica] font-normal text-[#ffffff99] text-xs leading-4 mt-1">
+                                            John Smith • VIP Client
+                                        </p>
+                                        <div class="flex items-center gap-2 mt-2">
+                                            <div class="w-2 h-2 bg-[#05df72] rounded-full opacity-[0.58] flex-shrink-0">
+                                            </div>
+                                            <span
+                                                class="font-['Inter',Helvetica] font-normal text-[#ffffffb2] text-xs leading-4">
+                                                Answered in 2.3s
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Driver Assigned card -->
+                            <div
+                                class="flex flex-col w-[251px] items-start pt-[25px] pb-px px-[25px] absolute top-64 right-0 bg-[#ffffff1a] rounded-2xl border border-solid border-[#ffffff33] shadow-[0px_25px_50px_-12px_#00000040] floating-card transition-all hover:shadow-[0px_30px_60px_-12px_#00000060] hover:border-[#ffffff66]">
+                                <div class="flex h-20 items-start gap-4 w-full">
+                                    <img class="w-12 h-12 flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-35.svg" />
+                                    <div class="flex-1 min-w-0">
+                                        <div
+                                            class="font-['Inter',Helvetica] font-normal text-[#ffffffe6] text-sm leading-5">
+                                            Driver Assigned
+                                        </div>
+                                        <p
+                                            class="font-['Inter',Helvetica] font-normal text-[#ffffff99] text-xs leading-4 mt-1">
+                                            David Martinez • Unit #47
+                                        </p>
+                                        <div class="flex items-center justify-between mt-2">
+                                            <span
+                                                class="font-['Inter',Helvetica] font-normal text-[#ffffffb2] text-xs leading-4">
+                                                ETA
+                                            </span>
+                                            <span
+                                                class="font-['Inter',Helvetica] font-normal text-white text-xs leading-4">
+                                                8 mins
+                                            </span>
+                                        </div>
+                                        <div class="h-1 bg-[#ffffff1a] rounded-full mt-1 overflow-hidden">
+                                            <div class="h-full w-3/4 bg-[#007771]">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Reservation Confirmed card -->
+                            <div
+                                class="flex flex-col w-[259px] items-start pt-[25px] pb-px px-[25px] absolute bottom-16 left-16 bg-[#ffffff1a] rounded-2xl border border-solid border-[#ffffff33] shadow-[0px_25px_50px_-12px_#00000040] floating-card transition-all hover:shadow-[0px_30px_60px_-12px_#00000060] hover:border-[#ffffff66]">
+                                <div class="flex h-[68px] items-start gap-4 w-full">
+                                    <img class="w-12 h-12 flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-39.svg" />
+                                    <div class="flex-1 min-w-0">
+                                        <div
+                                            class="font-['Inter',Helvetica] font-normal text-[#ffffffe6] text-sm leading-5">
+                                            Reservation Confirmed
+                                        </div>
+                                        <div
+                                            class="font-['Inter',Helvetica] font-normal text-[#ffffff99] text-xs leading-4 mt-1">
+                                            Airport Transfer • SUV
+                                        </div>
+                                        <div class="flex items-center gap-2 mt-2">
+                                            <img class="w-4 h-4 flex-shrink-0"
+                                                src="https://c.animaapp.com/mm4wgetn2S24DE/img/icon-3.svg" />
+                                            <span
+                                                class="font-['Inter',Helvetica] font-normal text-[#ffffffb2] text-xs leading-4">
+                                                Tomorrow, 6:30 AM
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ABOUT US SECTION -->
+        <section class="w-full bg-white py-16 lg:py-24 animate-on-scroll">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-24">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+                    <!-- Left: Text -->
+                    <div class="flex flex-col gap-8">
+                        <div class="flex flex-col gap-3">
+                            <span class="font-['Geist',Helvetica] font-medium text-[#007771] text-lg leading-[27px]">
+                                ABOUT US
+                            </span>
+                            <h2
+                                class="font-['Geist',Helvetica] font-semibold text-[#19253a] text-4xl sm:text-5xl tracking-[-0.96px] leading-[1.3]">
+                                A Dedicated Live Dispatch Partner
+                            </h2>
+                        </div>
+                        <p class="font-['Geist',Helvetica] font-normal text-[#007771] text-base leading-6">
+                            IDispatch Solutions is a professional human-operated dispatch service provider serving the
+                            passenger transportation industry.
+                        </p>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="flex items-center gap-3">
+                                <img class="w-12 h-12 flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-31.svg" />
+                                <div>
+                                    <div class="font-['Geist',Helvetica] font-bold text-[#19253a] text-xl leading-8">
+                                        100%
+                                    </div>
+                                    <div class="font-['Inter',Helvetica] font-normal text-[#007771] text-sm leading-5">
+                                        Precision
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <img class="w-12 h-12 flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-24.svg" />
+                                <div>
+                                    <div class="font-['Geist',Helvetica] font-bold text-[#19253a] text-xl leading-8">
+                                        24/7
+                                    </div>
+                                    <div class="font-['Inter',Helvetica] font-normal text-[#007771] text-sm leading-5">
+                                        Support
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <img class="w-12 h-12 flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/container.svg" />
+                                <div>
+                                    <div class="font-['Geist',Helvetica] font-bold text-[#19253a] text-xl leading-8">
+                                        Premium
+                                    </div>
+                                    <div class="font-['Inter',Helvetica] font-normal text-[#007771] text-sm leading-5">
+                                        Quality
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <img class="w-12 h-12 flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-1.svg" />
+                                <div>
+                                    <div class="font-['Geist',Helvetica] font-bold text-[#19253a] text-xl leading-8">
+                                        Global
+                                    </div>
+                                    <div class="font-['Inter',Helvetica] font-normal text-[#007771] text-sm leading-5">
+                                        Growth
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="bg-[#383838] inline-flex items-center gap-4 pl-3 pr-8 py-3 rounded-xl w-fit hover:bg-[#1a1a1a] transition-all duration-300 transform hover:-translate-y-1">
+                            <img class="w-8 h-8" src="https://c.animaapp.com/mm4wgetn2S24DE/img/fi-6941884.svg" />
+                            <span class="font-['Geist',Helvetica] font-semibold text-white text-lg leading-6">
+                                Contact Us Today
+                            </span>
+                        </button>
+                    </div>
+                    <!-- Right: Images -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 items-start">
+                        <div class="flex flex-col gap-5">
+                            <div
+                                class="w-full aspect-[402/390] rounded-[20px] bg-[url(https://c.animaapp.com/mm4wgetn2S24DE/img/frame-2147228069.png)] bg-cover bg-center">
+                            </div>
+                            <p class="font-['Geist',Helvetica] font-normal text-[#19253a] text-base leading-6">
+                                We provide trained dispatch professionals who manage bookings, coordinate drivers, and
+                                oversee transportation logistics under your company name with precision, urgency, and
+                                discretion.
+                                <br />
+                                <br />
+                                Our team operates as a structured extension of your business protecting your reputation
+                                while improving operational efficiency.
+                            </p>
+                        </div>
+                        <div class="flex flex-col gap-5">
+                            <div class="flex flex-col gap-4 p-8 bg-white rounded-[20px] border-l-4 border-[#383838]">
+                                <div class="font-['Geist',Helvetica] font-bold text-[#007771] text-lg leading-7">
+                                    We are NOT:
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <div class="flex items-center gap-3">
+                                        <img class="w-6 h-6 flex-shrink-0"
+                                            src="https://c.animaapp.com/mm4wgetn2S24DE/img/icon-2.svg" />
+                                        <span
+                                            class="font-['Geist',Helvetica] font-semibold text-[#19253a] text-lg leading-7">
+                                            Automated software
+                                        </span>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <img class="w-6 h-6 flex-shrink-0"
+                                            src="https://c.animaapp.com/mm4wgetn2S24DE/img/icon-2.svg" />
+                                        <span
+                                            class="font-['Geist',Helvetica] font-semibold text-[#19253a] text-lg leading-7">
+                                            A generic answering service
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="w-full aspect-[403/390] rounded-[20px] bg-[url(https://c.animaapp.com/mm4wgetn2S24DE/img/frame-2147228070.png)] bg-cover bg-center">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- FLEET SIZE SECTION -->
+        <section class="w-full bg-[#f7f7fc] py-16 lg:py-24">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-24">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+                    <!-- Left -->
+                    <div class="flex flex-col gap-8">
+                        <div class="flex flex-col gap-4">
+                            <h2
+                                class="font-['Geist',Helvetica] font-semibold text-[#19253a] text-4xl sm:text-5xl tracking-[-0.96px] leading-[1.3]">
+                                Built for Every Fleet Size
+                            </h2>
+                            <p class="font-['Geist',Helvetica] font-normal text-[#007771] text-base leading-6">
+                                From independent chauffeurs to enterprise international networks, our solutions scale
+                                with your business complexity.
+                            </p>
+                        </div>
+                        <div class="flex flex-col gap-4">
+                            <div
+                                class="flex items-center gap-3 p-4 bg-[#3838380d] rounded-lg border border-solid border-[#38383833] shadow-[0px_1px_2px_#0000000d] stagger-item card-hover">
+                                <img class="flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-5.svg" />
+                                <span class="font-['Geist',Helvetica] font-medium text-[#19253a] text-base leading-6">
+                                    Independent chauffeurs
+                                </span>
+                            </div>
+                            <div
+                                class="flex items-center gap-3 p-4 bg-[#3838380d] rounded-lg border border-solid border-[#38383833] shadow-[0px_1px_2px_#0000000d] stagger-item card-hover">
+                                <img class="flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-2.svg" />
+                                <span class="font-['Geist',Helvetica] font-medium text-[#19253a] text-base leading-6">
+                                    Boutique luxury fleets
+                                </span>
+                            </div>
+                            <div
+                                class="flex items-center gap-3 p-4 bg-[#3838380d] rounded-lg border border-solid border-[#38383833] shadow-[0px_1px_2px_#0000000d] stagger-item card-hover">
+                                <img class="flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-6.svg" />
+                                <span class="font-['Geist',Helvetica] font-medium text-[#19253a] text-base leading-6">
+                                    Growing regional operators
+                                </span>
+                            </div>
+                            <div
+                                class="flex items-center gap-3 p-4 bg-[#3838380d] rounded-lg border border-solid border-[#38383833] shadow-[0px_1px_2px_#0000000d] stagger-item card-hover">
+                                <img class="flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-8.svg" />
+                                <span class="font-['Geist',Helvetica] font-medium text-[#19253a] text-base leading-6">
+                                    Multi-city transportation companies
+                                </span>
+                            </div>
+                            <div
+                                class="flex items-center gap-3 p-4 bg-[#3838380d] rounded-lg border border-solid border-[#38383833] shadow-[0px_1px_2px_#0000000d] stagger-item card-hover">
+                                <img class="flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-18.svg" />
+                                <span class="font-['Geist',Helvetica] font-medium text-[#19253a] text-base leading-6">
+                                    Enterprise and international fleet networks
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right: Images -->
+                    <div class="grid grid-cols-2 gap-5 items-end">
+                        <div class="w-full aspect-square rounded-[20px] overflow-hidden bg-[#2a3637] mt-8">
+                            <div
+                                class="w-full h-full bg-[url(https://c.animaapp.com/mm4wgetn2S24DE/img/ab6axub3kiw-tl031fixlkzzs-iuq9n0rgce5hmyvnqzlarb2htjj78nntlrbrbo.png)] bg-cover bg-center">
+                            </div>
+                        </div>
+                        <div class="w-full aspect-square rounded-[20px] overflow-hidden bg-[#2a3637]">
+                            <div
+                                class="w-full h-full bg-[url(https://c.animaapp.com/mm4wgetn2S24DE/img/ab6axub-nd4l7foc5mkksw4908pblslsvb9wlzsahkjkrhnd2yzduby2triidcly.png)] bg-cover bg-center">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- SERVICES SECTION -->
+        <section class="w-full bg-white py-16 lg:py-24">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-24">
+                <div class="flex flex-col gap-16 lg:gap-24">
+                    <!-- Header -->
+                    <div class="flex flex-col items-center gap-6 text-center animate-on-scroll">
+                        <span class="font-['Geist',Helvetica] font-medium text-[#007771] text-lg leading-[27px]">
+                            OUR SERVICES
+                        </span>
+                        <div class="flex flex-col gap-3">
+                            <h2
+                                class="font-['Geist',Helvetica] font-semibold text-[#19253a] text-4xl sm:text-5xl text-center tracking-[-0.96px] leading-[1.3]">
+                                Structured Live Dispatch Solutions
+                            </h2>
+                            <p class="font-['Geist',Helvetica] font-medium text-[#007771] text-lg leading-[27px]">
+                                IDispatch Solutions offers three scalable service models aligned with your fleet size
+                                and operational goals.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Service 1: Essential Coverage -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-[68px] items-center">
+                        <div class="flex flex-col gap-8">
+                            <div class="flex flex-col gap-2">
+                                <img class="w-16 h-16" src="https://c.animaapp.com/mm4wgetn2S24DE/img/background.svg" />
+                                <h3
+                                    class="font-['Geist',Helvetica] font-bold text-slate-900 text-3xl sm:text-[40px] leading-[1.4]">
+                                    Essential Coverage Package
+                                </h3>
+                                <p class="font-['Inter',Helvetica] font-normal text-slate-500 text-base leading-6">
+                                    IDispatch Solutions offers tiered service models to match operational size and
+                                    growth stage.
+                                </p>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl stagger-item">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        After-hours live answering
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl stagger-item">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        Overflow call handling
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl stagger-item">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        Basic reservation entry
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl stagger-item">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        Emergency trip monitoring
+                                    </span>
+                                </div>
+                            </div>
+                            <p
+                                class="font-['Geist',Helvetica] font-bold text-[#383838] text-base tracking-[1.00px] leading-6">
+                                DESIGNED FOR SMALLER FLEETS NEEDING OPERATIONAL RELIEF WITHOUT FULL OUTSOURCING.
+                            </p>
+                        </div>
+                        <img class="w-full max-w-[624px] h-auto mx-auto"
+                            src="https://c.animaapp.com/mm4wgetn2S24DE/img/frame-2147228239-1.svg" />
+                    </div>
+                    <!-- Service 2: Professional Operations -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-[68px] items-center">
+                        <img class="w-full max-w-[624px] h-auto mx-auto order-2 lg:order-1"
+                            src="https://c.animaapp.com/mm4wgetn2S24DE/img/frame-2147228239-2.svg" />
+                        <div class="flex flex-col gap-8 order-1 lg:order-2">
+                            <div class="flex flex-col gap-2">
+                                <img class="w-[67px] h-[67px]"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/background-2.svg" />
+                                <h3
+                                    class="font-['Geist',Helvetica] font-bold text-slate-900 text-3xl sm:text-[40px] leading-[1.4]">
+                                    Professional Operations Package
+                                </h3>
+                                <p class="font-['Inter',Helvetica] font-normal text-slate-500 text-base leading-6">
+                                    Flexible reinforcement when you need it most.
+                                </p>
+                                <div
+                                    class="inline-flex items-center justify-center gap-2.5 px-3 py-2 bg-[#383838] rounded-[50px] w-fit mt-2">
+                                    <span
+                                        class="font-['Geist',Helvetica] font-bold text-white text-xs tracking-[1.00px] leading-[18px]">
+                                        MOST POPULAR
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        24/7 live call answering
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        Full reservation management
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        Real-time chauffeur coordination
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        Trip oversight and monitoring
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        Structured reporting
+                                    </span>
+                                </div>
+                            </div>
+                            <p
+                                class="font-['Geist',Helvetica] font-bold text-[#383838] text-base tracking-[1.00px] leading-6">
+                                IDEAL FOR ESTABLISHED TRANSPORTATION COMPANIES SEEKING OPERATIONAL CONSISTENCY AND
+                                SCALABILITY.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Service 3: Enterprise Infrastructure -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-[68px] items-center">
+                        <div class="flex flex-col gap-8">
+                            <div class="flex flex-col gap-2">
+                                <img class="w-16 h-16"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/background-1.svg" />
+                                <h3
+                                    class="font-['Geist',Helvetica] font-bold text-slate-900 text-3xl sm:text-[40px] leading-[1.4]">
+                                    Enterprise Infrastructure Package
+                                </h3>
+                                <p class="font-['Inter',Helvetica] font-normal text-slate-500 text-base leading-6">
+                                    Human-Led AI-Supported efficiency for scale.
+                                </p>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        Complete dispatch management
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        SOP implementation
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        Dedicated dispatch team
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        Affiliate coordination protocols
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        Performance analytics
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        Escalation systems
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-3 p-4 bg-[#f2f8ff] rounded-xl">
+                                    <img class="flex-shrink-0"
+                                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-3.svg" />
+                                    <span
+                                        class="font-['Geist',Helvetica] font-medium text-slate-700 text-base leading-6">
+                                        Custom integration support
+                                    </span>
+                                </div>
+                            </div>
+                            <p
+                                class="font-['Geist',Helvetica] font-bold text-[#383838] text-base tracking-[1.00px] leading-6">
+                                BUILT FOR HIGH-VOLUME OPERATORS, MULTI-LOCATION FLEETS, AND COMPANIES OPERATING IN
+                                COMPETITIVE CORPORATE MARKETS.
+                            </p>
+                        </div>
+                        <img class="w-full max-w-[624px] h-auto mx-auto"
+                            src="https://c.animaapp.com/mm4wgetn2S24DE/img/frame-2147228239.svg" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- SCALABLE PACKAGES SECTION -->
+        <section class="w-full bg-white py-16 lg:py-24">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-24">
+                <div
+                    class="flex flex-col lg:flex-row items-start justify-between gap-10 p-8 sm:p-12 bg-[#f8f7fd] rounded-[32px]">
+                    <!-- Left -->
+                    <div class="flex flex-col gap-8 w-full lg:max-w-[397px]">
+                        <h2
+                            class="font-['Geist',Helvetica] font-semibold text-[#19253a] text-4xl sm:text-5xl tracking-[-0.96px] leading-[1.3]">
+                            Scalable Service
+                            <br />
+                            Packages
+                        </h2>
+                        <p class="font-['Geist',Helvetica] font-normal text-[#505662] text-base leading-6">
+                            We offer transparent, volume-based pricing models designed to grow with your business
+                            complexity.
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <span
+                                class="inline-flex items-center px-6 py-2.5 bg-slate-900 rounded-full font-['Geist',Helvetica] font-bold text-white text-xs tracking-[1.20px] leading-4">
+                                LITE
+                            </span>
+                            <span
+                                class="inline-flex items-center px-6 py-2.5 bg-[#19253a] rounded-full font-['Geist',Helvetica] font-bold text-white text-xs tracking-[1.20px] leading-4">
+                                GROWTH
+                            </span>
+                            <span
+                                class="inline-flex items-center px-6 py-2.5 bg-white rounded-full font-['Geist',Helvetica] font-bold text-slate-600 text-xs tracking-[1.20px] leading-4">
+                                ENTERPRISE
+                            </span>
+                            <span
+                                class="inline-flex items-center px-6 py-2.5 bg-white rounded-full font-['Geist',Helvetica] font-bold text-slate-600 text-xs tracking-[1.20px] leading-4">
+                                GLOBAL ELITE
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Right -->
+                    <div class="flex flex-col gap-6 w-full lg:max-w-[408px] animate-on-scroll">
+                        <div
+                            class="flex flex-col gap-4 p-8 bg-white rounded-[20px] border border-solid border-slate-100 shadow-[0px_5px_20px_#00000005] card-hover stagger-item transition-all">
+                            <div class="flex items-center gap-4">
+                                <img class="flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-34.svg" />
+                                <span class="font-['Geist',Helvetica] font-bold text-slate-900 text-xl leading-7">
+                                    Flexible Volume
+                                </span>
+                            </div>
+                            <p class="font-['Geist',Helvetica] font-normal text-slate-500 text-base leading-6">
+                                Scale up or down based on monthly trip counts without long-term rigid contracts.
+                            </p>
+                        </div>
+                        <div
+                            class="flex flex-col gap-4 p-8 bg-white rounded-[20px] border border-solid border-slate-100 shadow-[0px_5px_20px_#00000005] card-hover stagger-item transition-all">
+                            <div class="flex items-center gap-4">
+                                <img class="flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-19.svg" />
+                                <span class="font-['Geist',Helvetica] font-bold text-slate-900 text-xl leading-7">
+                                    Complexity tiers
+                                </span>
+                            </div>
+                            <p class="font-['Geist',Helvetica] font-normal text-slate-500 text-base leading-6">
+                                Custom pricing for multi-city or multi-timezone needs tailored for complex fleet
+                                dynamics.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- WHY CHOOSE US — Green section -->
+        <section class="w-full bg-white pb-16 lg:pb-24">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-24">
+                <div
+                    class="rounded-[64px_64px_0px_0px] [background:linear-gradient(180deg,rgba(1,118,112,1)_0%,rgba(0,97,92,1)_100%)] p-8 sm:p-12 lg:p-24">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                        <div class="flex flex-col gap-4 stagger-item">
+                            <img class="w-16 h-16" src="https://c.animaapp.com/mm4wgetn2S24DE/img/overlay-1.svg" />
+                            <h3 class="font-['Geist',Helvetica] font-bold text-white text-xl leading-7">
+                                Dedicated Account Management
+                            </h3>
+                            <div class="w-12 h-1 bg-white rounded-full">
+                            </div>
+                            <p class="font-['Geist',Helvetica] font-normal text-slate-400 text-sm leading-[22.8px]">
+                                A personal point of contact who understands your specific fleet nuances and driver
+                                requirements.
+                            </p>
+                        </div>
+                        <div class="flex flex-col gap-4 stagger-item">
+                            <img class="w-16 h-16" src="https://c.animaapp.com/mm4wgetn2S24DE/img/overlay-2.svg" />
+                            <h3 class="font-['Geist',Helvetica] font-bold text-white text-xl leading-7">
+                                Platform Experience
+                            </h3>
+                            <div class="w-12 h-1 bg-white rounded-full">
+                            </div>
+                            <p class="font-['Geist',Helvetica] font-normal text-slate-400 text-sm leading-[22.8px]">
+                                Expertise in Limo Anywhere, GroundSpan, SantaCruz, and all major industry dispatching
+                                software.
+                            </p>
+                        </div>
+                        <div class="flex flex-col gap-4 stagger-item">
+                            <img class="w-16 h-16" src="https://c.animaapp.com/mm4wgetn2S24DE/img/overlay.svg" />
+                            <h3 class="font-['Geist',Helvetica] font-bold text-white text-xl leading-7">
+                                Professional Communication
+                            </h3>
+                            <div class="w-12 h-1 bg-white rounded-full">
+                            </div>
+                            <p class="font-['Geist',Helvetica] font-normal text-slate-400 text-sm leading-[22.8px]">
+                                Fluent, articulate English-speaking dispatchers ensuring professional client and driver
+                                interactions.
+                            </p>
+                        </div>
+                        <div class="flex flex-col gap-4 stagger-item">
+                            <img class="w-16 h-16" src="https://c.animaapp.com/mm4wgetn2S24DE/img/overlay-3.svg" />
+                            <h3 class="font-['Geist',Helvetica] font-bold text-white text-xl leading-7">
+                                Security &amp; Confidentiality
+                            </h3>
+                            <div class="w-12 h-1 bg-white rounded-full">
+                            </div>
+                            <p class="font-['Geist',Helvetica] font-normal text-slate-400 text-sm leading-[22.8px]">
+                                Robust NDAs and military-grade data security protocols to protect your client lists and
+                                business intelligence.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- GLOBAL COVERAGE SECTION -->
+        <section class="relative w-full overflow-hidden">
+            <img class="absolute inset-0 w-full h-full blur-[10px] object-cover"
+                src="https://c.animaapp.com/mm4wgetn2S24DE/img/image-5.png" />
+            <div class="relative max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-24 py-16 lg:py-24">
+                <div class="flex flex-col items-center gap-10 lg:gap-[50px]">
+                    <div class="flex flex-col items-center gap-3 text-center">
+                        <h2
+                            class="font-['Geist',Helvetica] font-semibold text-[#19253a] text-4xl sm:text-5xl text-center tracking-[-0.96px] leading-[1.3]">
+                            Global 24/7 Coverage
+                        </h2>
+                        <p
+                            class="font-['Geist',Helvetica] font-medium text-[#505662] text-lg text-center leading-[27px]">
+                            We operate across multiple time zones to provide uninterrupted service for your global
+                            operations.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-[1009px]">
+                        <div
+                            class="flex items-center gap-3 p-2 bg-[#ffffff4c] rounded-lg border border-solid border-[#ffffff80] stagger-item transition-all hover:bg-[#ffffffcc] hover:border-white">
+                            <img class="flex-shrink-0"
+                                src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-18.svg" />
+                            <span
+                                class="font-['Geist',Helvetica] font-medium text-[#19253a] text-sm sm:text-base leading-6">
+                                North America
+                            </span>
+                        </div>
+                        <div
+                            class="flex items-center gap-3 p-2 bg-[#ffffff4c] rounded-lg border border-solid border-[#ffffff80] stagger-item transition-all hover:bg-[#ffffffcc] hover:border-white">
+                            <img class="flex-shrink-0"
+                                src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-18.svg" />
+                            <span
+                                class="font-['Geist',Helvetica] font-medium text-[#19253a] text-sm sm:text-base leading-6">
+                                Middle East
+                            </span>
+                        </div>
+                        <div
+                            class="flex items-center gap-3 p-2 bg-[#ffffff4c] rounded-lg border border-solid border-[#ffffff80] stagger-item transition-all hover:bg-[#ffffffcc] hover:border-white">
+                            <img class="flex-shrink-0"
+                                src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-18.svg" />
+                            <span
+                                class="font-['Geist',Helvetica] font-medium text-[#19253a] text-sm sm:text-base leading-6">
+                                Europe
+                            </span>
+                        </div>
+                        <div
+                            class="flex items-center gap-3 p-2 bg-[#ffffff4c] rounded-lg border border-solid border-[#ffffff80] stagger-item transition-all hover:bg-[#ffffffcc] hover:border-white">
+                            <img class="flex-shrink-0"
+                                src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-18.svg" />
+                            <span
+                                class="font-['Geist',Helvetica] font-medium text-[#19253a] text-sm sm:text-base leading-6">
+                                Asia-Pacific
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- SPONSORS SECTION -->
+        <section class="w-full bg-[#efefef] py-16 lg:py-24">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-24">
+                <div class="flex flex-col items-center gap-14">
+                    <h2
+                        class="font-['Geist',Helvetica] font-bold text-slate-900 text-4xl sm:text-5xl text-center leading-[48px] animate-on-scroll">
+                        Proud Sponsor Of
+                    </h2>
+                    <div
+                        class="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 lg:gap-[130px] w-full animate-on-scroll">
+                        <img class="w-full max-w-[352px] h-auto object-contain stagger-item transition-all hover:scale-105"
+                            src="https://c.animaapp.com/mm4wgetn2S24DE/img/image-12.png" />
+                        <img class="w-full max-w-[352px] h-auto object-contain stagger-item transition-all hover:scale-105"
+                            src="https://c.animaapp.com/mm4wgetn2S24DE/img/image-13.png" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- FAQ SECTION -->
+        <section class="w-full bg-white py-16 lg:py-24">
+            <div class="max-w-4xl mx-auto px-4 sm:px-8">
+                <div class="flex flex-col gap-16 lg:gap-24">
+                    <h2
+                        class="font-['Geist',Helvetica] font-bold text-slate-900 text-4xl sm:text-5xl text-center leading-[48px]">
+                        Frequently Asked Questions
+                    </h2>
+                    <div class="flex flex-col gap-6">
+                        <div
+                            class="rounded-3xl overflow-hidden border border-solid border-[#f8f7fd] shadow-[0px_2px_10px_-2px_#00000005,0px_4px_20px_-2px_#0000000d] bg-white">
+                            <div class="flex items-center justify-between p-6 sm:p-8">
+                                <p
+                                    class="font-['Geist',Helvetica] font-bold text-slate-800 text-lg sm:text-xl leading-7 pr-4">
+                                    Is your service really 24/7?
+                                </p>
+                                <img class="w-6 h-6 flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/minus-sign.svg" />
+                            </div>
+                            <div class="px-6 sm:px-8 pb-6 sm:pb-8">
+                                <p class="font-['Geist',Helvetica] font-light text-slate-500 text-base leading-[26px]">
+                                    Yes, we provide round-the-clock live dispatching every single day of the year,
+                                    including holidays. Our teams work in rotating shifts to ensure peak performance at
+                                    any hour.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="rounded-3xl overflow-hidden border border-solid border-[#f8f7fd] shadow-[0px_2px_10px_-2px_#00000005,0px_4px_20px_-2px_#0000000d] bg-white">
+                            <div class="flex items-center justify-between p-6 sm:p-8">
+                                <p
+                                    class="font-['Geist',Helvetica] font-bold text-slate-800 text-lg sm:text-xl leading-7 pr-4">
+                                    Do you use automated voices?
+                                </p>
+                                <img class="w-6 h-6 flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/minus-sign.svg" />
+                            </div>
+                            <div class="px-6 sm:px-8 pb-6 sm:pb-8">
+                                <p class="font-['Geist',Helvetica] font-light text-slate-500 text-base leading-[26px]">
+                                    No. Every call is answered by a trained, professional human dispatcher who acts as a
+                                    direct extension of your team. We believe human touch is critical for premium
+                                    service.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col bg-white rounded-3xl overflow-hidden border border-solid border-slate-100 shadow-[0px_2px_10px_-2px_#00000005,0px_4px_20px_-2px_#0000000d]">
+                            <div class="flex items-center justify-between p-6 sm:p-8">
+                                <p
+                                    class="font-['Geist',Helvetica] font-bold text-slate-800 text-lg sm:text-xl leading-7 pr-4">
+                                    Can you handle large fleets?
+                                </p>
+                                <img class="flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-23.svg" />
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col bg-white rounded-3xl overflow-hidden border border-solid border-slate-100 shadow-[0px_2px_10px_-2px_#00000005,0px_4px_20px_-2px_#0000000d]">
+                            <div class="flex items-center justify-between p-6 sm:p-8">
+                                <p
+                                    class="font-['Geist',Helvetica] font-bold text-slate-800 text-lg sm:text-xl leading-7 pr-4">
+                                    Will I have a dedicated manager?
+                                </p>
+                                <img class="flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-23.svg" />
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col bg-white rounded-3xl overflow-hidden border border-solid border-slate-100 shadow-[0px_2px_10px_-2px_#00000005,0px_4px_20px_-2px_#0000000d]">
+                            <div class="flex items-center justify-between p-6 sm:p-8">
+                                <p
+                                    class="font-['Geist',Helvetica] font-bold text-slate-800 text-lg sm:text-xl leading-7 pr-4">
+                                    How is pricing calculated?
+                                </p>
+                                <img class="flex-shrink-0"
+                                    src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-23.svg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CTA SECTION -->
+        <section class="w-full bg-white pb-16 lg:pb-24">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-24">
+                <div
+                    class="relative flex flex-col items-center gap-10 sm:gap-12 px-6 sm:px-12 py-16 sm:py-[120px] rounded-[32px] overflow-hidden [background:linear-gradient(134deg,rgba(0,119,113,1)_0%,rgba(56,56,56,1)_100%)]">
+                    <img class="absolute inset-0 w-full h-full object-cover opacity-30"
+                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/image-6.png" />
+                    <div class="relative flex flex-col items-center gap-4 text-center">
+                        <h2
+                            class="font-['Geist',Helvetica] font-semibold text-white text-3xl sm:text-5xl text-center tracking-[-0.96px] leading-[1.3] max-w-[662px]">
+                            Strengthen Your Dispatch Operations Today
+                        </h2>
+                        <p
+                            class="font-['Geist',Helvetica] font-normal text-white text-base text-center leading-6 max-w-[449px]">
+                            Partner with IDispatch Solutions and focus on growing your fleet while we handle the
+                            logistics.
+                        </p>
+                    </div>
+                    <div class="relative flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full sm:w-auto">
+                        <button
+                            class="bg-white inline-flex items-center justify-center gap-4 pl-3 pr-8 py-3 rounded-xl w-full sm:w-auto hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1">
+                            <img class="w-8 h-8 flex-shrink-0"
+                                src="https://c.animaapp.com/mm4wgetn2S24DE/img/fi-6941884.svg" />
+                            <span class="font-['Geist',Helvetica] font-semibold text-[#383838] text-lg leading-6">
+                                Request a Confidential Consultation
+                            </span>
+                        </button>
+                        <button
+                            class="inline-flex items-center justify-center gap-2.5 px-8 py-3 bg-[#ffffff0d] rounded-xl border border-solid border-white w-full sm:w-auto text-white hover:bg-[#ffffff1a] transition-all duration-300 transform hover:-translate-y-1">
+                            <span class="font-['Geist',Helvetica] font-medium text-base leading-6">
+                                Partner With IDispatch
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- FOOTER -->
+        <footer
+            class="flex flex-col gap-16 px-4 sm:px-8 lg:px-24 py-16 w-full bg-[#383838] border-t border-[#ffffff0d]">
+            <div class="flex flex-col md:flex-row gap-10 md:gap-12 max-w-[1440px] w-full">
+                <!-- Brand -->
+                <div class="flex flex-col gap-6 w-full md:max-w-[280px] lg:max-w-[360px]">
+                    <img class="w-[158px] h-auto"
+                        src="https://c.animaapp.com/mm4wgetn2S24DE/img/logo-design-final-01-1.svg" />
+                    <p class="font-['Geist',Helvetica] font-normal text-slate-400 text-base leading-6">
+                        Elevating transportation standards through professional, human-centered dispatching solutions
+                        for the global limousine industry.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <span
+                            class="font-['Geist',Helvetica] font-normal text-slate-400 text-base leading-6 cursor-pointer hover:text-white transition-colors">
+                            LinkedIn
+                        </span>
+                        <span
+                            class="font-['Geist',Helvetica] font-normal text-slate-400 text-base leading-6 cursor-pointer hover:text-white transition-colors">
+                            Twitter
+                        </span>
+                        <span
+                            class="font-['Geist',Helvetica] font-normal text-slate-400 text-base leading-6 cursor-pointer hover:text-white transition-colors">
+                            Facebook
+                        </span>
+                    </div>
+                </div>
+                <!-- Content links -->
+                <div class="flex flex-col gap-4 flex-1">
+                    <span class="font-['Geist',Helvetica] font-bold text-white text-base leading-6">
+                        Content
+                    </span>
+                    <div class="flex flex-col gap-2">
+                        <span class="font-['Geist',Helvetica] font-normal text-slate-400 text-sm leading-5">
+                            Home
+                        </span>
+                        <span class="font-['Geist',Helvetica] font-normal text-slate-400 text-sm leading-5">
+                            About Us
+                        </span>
+                        <span class="font-['Geist',Helvetica] font-normal text-slate-400 text-sm leading-5">
+                            Services
+                        </span>
+                        <span class="font-['Geist',Helvetica] font-normal text-slate-400 text-sm leading-5">
+                            Reviews
+                        </span>
+                        <span class="font-['Geist',Helvetica] font-normal text-slate-400 text-sm leading-5">
+                            Blog
+                        </span>
+                        <span class="font-['Geist',Helvetica] font-normal text-slate-400 text-sm leading-5">
+                            Contact
+                        </span>
+                    </div>
+                </div>
+                <!-- Contact info -->
+                <div class="flex flex-col gap-4 flex-1">
+                    <span class="font-['Geist',Helvetica] font-bold text-white text-base leading-6">
+                        Contact
+                    </span>
+                    <div class="flex flex-col gap-2">
+                        <p class="font-['Geist',Helvetica] font-normal text-sm leading-5">
+                            <span class="text-slate-400">
+                                Executive Inquiries
+                                <br />
+                            </span>
+                            <span class="text-white">
+                                info@idispatchsolutions.com
+                            </span>
+                        </p>
+                        <p class="font-['Geist',Helvetica] font-normal text-sm leading-5">
+                            <span class="text-slate-400">
+                                Enterprise &amp; Multi-City Operations
+                                <br />
+                            </span>
+                            <span class="text-white">
+                                enterprise@idispatchsolutions.com
+                            </span>
+                        </p>
+                        <span class="font-['Geist',Helvetica] font-normal text-slate-400 text-sm leading-5">
+                            +1 (800) DISPATCH
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom bar -->
+            <div
+                class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-8 border-t border-[#ffffff0d] max-w-[1440px] w-full">
+                <p class="font-['Inter',Helvetica] font-normal text-slate-400 text-xs leading-4">
+                    © 2024 IDispatch Solutions. All rights reserved.
+                </p>
+                <div class="flex items-center gap-6">
+                    <span class="font-['Inter',Helvetica] font-normal text-slate-400 text-xs leading-4">
+                        Privacy Policy
+                    </span>
+                    <span class="font-['Inter',Helvetica] font-normal text-slate-400 text-xs leading-4">
+                        Terms of Service
+                    </span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        // Mobile menu toggle
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+        toggle.addEventListener('click', () => {
+            const isOpen = !menu.classList.contains('hidden');
+            if (isOpen) {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            } else {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+            }
+        });
+
+        // Scroll-triggered animations with Animate CSS
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animate-on-scroll class
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Observe stagger items
+        const staggerObserver = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated');
+                    entry.target.style.animationName = 'fadeInUp';
+                    entry.target.style.animationDuration = '0.8s';
+                    entry.target.style.animationDelay = (index * 0.1) + 's';
+                    staggerObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        // Observe stagger items
+        document.querySelectorAll('.stagger-item').forEach(el => {
+            staggerObserver.observe(el);
+        });
+
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const header = item.querySelector('.flex.items-center');
+            const content = item.querySelector('.faq-content');
+            const icon = item.querySelector('.faq-icon');
+            
+            header.addEventListener('click', () => {
+                const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+                
+                // Close all other FAQs
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        const otherContent = otherItem.querySelector('.faq-content');
+                        const otherIcon = otherItem.querySelector('.faq-icon');
+                        otherContent.style.maxHeight = '0px';
+                        otherContent.style.opacity = '0';
+                        otherIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+                
+                // Toggle current FAQ
+                if (isOpen) {
+                    content.style.maxHeight = '0px';
+                    content.style.opacity = '0';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    content.style.opacity = '1';
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // Floating cards parallax effect
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    document.querySelectorAll('.floating-card').forEach((card, index) => {
+                        card.style.transform = `translateY(${scrollY * (0.05 + index * 0.02)}px)`;
+                    });
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Button hover effects
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.classList.add('animate__animated', 'animate__pulse');
+            });
+            button.addEventListener('mouseleave', function() {
+                this.classList.remove('animate__animated', 'animate__pulse');
+            });
+        });
+
+        // Card hover animations
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('animate__animated', 'animate__swing');
+            });
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('animate__animated', 'animate__swing');
+            });
+        });
+
+        // Page load animation
+        window.addEventListener('load', () => {
+            document.documentElement.style.opacity = '1';
+        });
+    </script>
+</body>
+
+</html>
