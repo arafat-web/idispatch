@@ -508,6 +508,278 @@
             .faq-body.open { padding: 0 20px 20px; }
             .hero-headline-img { max-width: 100%; }
         }
+
+        /* ══════════════════════════════════════
+           ENHANCED INCOMING CALL CARD
+        ══════════════════════════════════════ */
+
+        /* Card container */
+        .call-card-enhanced {
+            position: relative;
+            width: 252px;
+            padding: 20px 20px 16px;
+            border-radius: 20px;
+            cursor: default;
+            overflow: hidden;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.18);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            box-shadow:
+                0 8px 32px rgba(0,0,0,0.35),
+                0 2px 8px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.18),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+            animation: float1 5s ease-in-out infinite;
+            transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s ease;
+        }
+        .call-card-enhanced:hover {
+            transform: translateY(-14px) scale(1.02) !important;
+            box-shadow:
+                0 28px 60px rgba(0,0,0,0.5),
+                0 4px 16px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.25);
+            animation-play-state: paused;
+        }
+
+        /* Shimmer sweep across card */
+        .call-card-enhanced::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                110deg,
+                transparent 25%,
+                rgba(255,255,255,0.07) 50%,
+                transparent 75%
+            );
+            background-size: 200% 100%;
+            animation: cardShimmer 4s ease-in-out infinite 1.5s;
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes cardShimmer {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Top glow edge */
+        .call-card-enhanced::after {
+            content: '';
+            position: absolute;
+            top: -1px; left: 24px; right: 24px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(5,223,114,0.7), rgba(0,119,113,0.5), transparent);
+            border-radius: 0 0 3px 3px;
+            animation: topEdgeGlow 3s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes topEdgeGlow {
+            0%, 100% { opacity: 0.5; transform: scaleX(0.75); }
+            50%       { opacity: 1;   transform: scaleX(1); }
+        }
+
+        /* Ambient orbs */
+        .call-orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(18px);
+            z-index: 0;
+        }
+        .call-orb-1 {
+            width: 72px; height: 72px;
+            top: -16px; right: -16px;
+            background: radial-gradient(circle, rgba(0,119,113,0.4) 0%, transparent 70%);
+            animation: orbFloat 6s ease-in-out infinite;
+        }
+        .call-orb-2 {
+            width: 52px; height: 52px;
+            bottom: -12px; left: -8px;
+            background: radial-gradient(circle, rgba(5,223,114,0.22) 0%, transparent 70%);
+            animation: orbFloat 7s ease-in-out infinite reverse 1s;
+        }
+        @keyframes orbFloat {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50%       { opacity: 1;   transform: scale(1.35); }
+        }
+
+        /* Card inner layout (above pseudo + orbs) */
+        .call-card-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        /* Avatar wrapper */
+        .call-avatar-wrap {
+            position: relative;
+            flex-shrink: 0;
+            width: 46px;
+            height: 46px;
+        }
+
+        /* Avatar box */
+        .call-avatar-box {
+            width: 46px; height: 46px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, rgba(0,119,113,0.65), rgba(0,80,75,0.45));
+            border: 1px solid rgba(255,255,255,0.18);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+        .call-avatar-box img { width: 100%; height: 100%; object-fit: contain; }
+
+        /* Ringing pulse rings */
+        .pulse-ring-1,
+        .pulse-ring-2,
+        .pulse-ring-3 {
+            position: absolute;
+            border-radius: 17px;
+            border: 1.5px solid rgba(5,223,114,0.5);
+            animation: ringExpand 2.2s ease-out infinite;
+            pointer-events: none;
+        }
+        .pulse-ring-1 { inset: -5px;  border-radius: 17px; animation-delay: 0s; }
+        .pulse-ring-2 { inset: -11px; border-radius: 22px; border-color: rgba(5,223,114,0.25); animation-delay: 0.45s; }
+        .pulse-ring-3 { inset: -18px; border-radius: 28px; border-color: rgba(5,223,114,0.1); animation-delay: 0.9s; }
+        @keyframes ringExpand {
+            0%   { opacity: 1;  transform: scale(0.88); }
+            100% { opacity: 0;  transform: scale(1.2); }
+        }
+
+        /* Text block */
+        .call-text { flex: 1; min-width: 0; }
+
+        /* Incoming badge */
+        .incoming-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 8px 3px 5px;
+            background: rgba(5,223,114,0.12);
+            border: 1px solid rgba(5,223,114,0.28);
+            border-radius: 20px;
+            margin-bottom: 7px;
+        }
+        .incoming-badge-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #05df72;
+            animation: dotGlow 1.6s ease-in-out infinite;
+            box-shadow: 0 0 5px rgba(5,223,114,0.8);
+            flex-shrink: 0;
+        }
+        @keyframes dotGlow {
+            0%, 100% { box-shadow: 0 0 4px rgba(5,223,114,0.8);  transform: scale(1); }
+            50%       { box-shadow: 0 0 10px rgba(5,223,114,1);   transform: scale(1.35); }
+        }
+        .incoming-badge-text {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #05df72;
+            font-family: 'Geist', sans-serif;
+        }
+
+        .call-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.95);
+            line-height: 1.3;
+            font-family: 'Geist', sans-serif;
+        }
+        .call-sub {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 3px;
+        }
+        .vip-tag {
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+            color: #fbbf24;
+            background: rgba(251,191,36,0.12);
+            border: 1px solid rgba(251,191,36,0.28);
+            border-radius: 4px;
+            padding: 1px 5px;
+            font-family: 'Geist', sans-serif;
+        }
+        .call-role {
+            font-size: 10px;
+            color: rgba(255,255,255,0.42);
+            font-family: 'Geist', sans-serif;
+        }
+
+        /* Divider */
+        .call-divider {
+            position: relative; z-index: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            margin: 13px 0;
+        }
+
+        /* Bottom stats */
+        .call-stats {
+            position: relative; z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Audio waveform */
+        .call-waveform {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            height: 16px;
+        }
+        .wave-b {
+            width: 2.5px;
+            border-radius: 2px;
+            background: rgba(0,119,113,0.75);
+            animation: waveAnim 1.3s ease-in-out infinite;
+        }
+        .wave-b:nth-child(1)  { height: 4px;  animation-delay: 0s;    }
+        .wave-b:nth-child(2)  { height: 8px;  animation-delay: 0.1s;  }
+        .wave-b:nth-child(3)  { height: 12px; animation-delay: 0.2s;  }
+        .wave-b:nth-child(4)  { height: 16px; animation-delay: 0.3s;  background: rgba(5,223,114,0.95); }
+        .wave-b:nth-child(5)  { height: 10px; animation-delay: 0.4s;  }
+        .wave-b:nth-child(6)  { height: 14px; animation-delay: 0.5s;  background: rgba(5,223,114,0.7); }
+        .wave-b:nth-child(7)  { height: 6px;  animation-delay: 0.6s;  }
+        .wave-b:nth-child(8)  { height: 11px; animation-delay: 0.7s;  }
+        .wave-b:nth-child(9)  { height: 7px;  animation-delay: 0.15s; }
+        .wave-b:nth-child(10) { height: 4px;  animation-delay: 0.55s; }
+        @keyframes waveAnim {
+            0%, 100% { transform: scaleY(0.35); opacity: 0.45; }
+            50%       { transform: scaleY(1);    opacity: 1; }
+        }
+
+        /* Response time */
+        .call-resp {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .call-resp-label {
+            font-size: 10px;
+            color: rgba(255,255,255,0.45);
+            font-family: 'Geist', sans-serif;
+        }
+        .call-resp-value {
+            font-size: 10px;
+            font-weight: 600;
+            color: #05df72;
+            font-family: 'Geist', sans-serif;
+        }
     </style>
 </head>
 <body>
@@ -523,7 +795,7 @@
                 <div class="w-px h-6 bg-white/20"></div>
                 <div class="flex items-center gap-1">
                     <img class="w-4 h-3" src="https://c.animaapp.com/mm4wgetn2S24DE/img/svg-1.svg" />
-                    <span class="font-['Geist',Helvetica] font-normal text-white text-sm">support@idispatch.com</span>
+                    <span class="font-['Geist',Helvetica] font-normal text-white text-sm"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4734323737283533072e232e34372633242f6924282a">[email&#160;protected]</a></span>
                 </div>
             </div>
             <div class="flex items-center gap-4 lg:gap-6">
@@ -643,17 +915,61 @@
                     <!-- Right: Hero Image with Floating Cards -->
                     <div class="relative w-full hidden lg:block hero-image-wrap">
                         <div class="w-full aspect-[624/700] bg-[url(https://c.animaapp.com/mm4wgetn2S24DE/img/container-38.svg)] bg-[100%_100%] relative">
-                            <!-- Incoming Call card -->
-                            <div class="float-card-1 flex flex-col w-[235px] items-start pt-[25px] pb-px px-[25px] absolute top-16 left-8 bg-white/10 rounded-2xl border border-white/20 shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] backdrop-blur-sm cursor-default">
-                                <div class="flex h-[68px] items-start gap-4 w-full">
-                                    <img class="w-12 h-12 flex-shrink-0" src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-33.svg" />
-                                    <div class="flex-1 min-w-0">
-                                        <div class="font-['Geist',Helvetica] font-normal text-white/90 text-sm">Incoming Call</div>
-                                        <p class="font-['Geist',Helvetica] font-normal text-white/60 text-xs mt-1">John Smith • VIP Client</p>
-                                        <div class="flex items-center gap-2 mt-2">
-                                            <div class="live-dot w-2 h-2 bg-[#05df72] rounded-full flex-shrink-0"></div>
-                                            <span class="font-['Geist',Helvetica] font-normal text-white/70 text-xs">Answered in 2.3s</span>
+                            <!-- ✦ ENHANCED Incoming Call card -->
+                            <div class="call-card-enhanced absolute top-14 left-6">
+                                <!-- Ambient orbs -->
+                                <div class="call-orb call-orb-1"></div>
+                                <div class="call-orb call-orb-2"></div>
+
+                                <!-- Top row: avatar + text -->
+                                <div class="call-card-inner">
+                                    <!-- Avatar with pulse rings -->
+                                    <div class="call-avatar-wrap">
+                                        <div class="pulse-ring-1"></div>
+                                        <div class="pulse-ring-2"></div>
+                                        <div class="pulse-ring-3"></div>
+                                        <div class="call-avatar-box">
+                                            <img src="https://c.animaapp.com/mm4wgetn2S24DE/img/container-33.svg" alt="call" />
                                         </div>
+                                    </div>
+                                    <!-- Text -->
+                                    <div class="call-text">
+                                        <div class="incoming-badge">
+                                            <div class="incoming-badge-dot"></div>
+                                            <span class="incoming-badge-text">Incoming Call</span>
+                                        </div>
+                                        <div class="call-name">John Smith</div>
+                                        <div class="call-sub">
+                                            <span class="vip-tag">VIP</span>
+                                            <span class="call-role">Client</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Divider -->
+                                <div class="call-divider"></div>
+
+                                <!-- Bottom: waveform + response time -->
+                                <div class="call-stats">
+                                    <div class="call-waveform">
+                                        <div class="wave-b"></div>
+                                        <div class="wave-b"></div>
+                                        <div class="wave-b"></div>
+                                        <div class="wave-b"></div>
+                                        <div class="wave-b"></div>
+                                        <div class="wave-b"></div>
+                                        <div class="wave-b"></div>
+                                        <div class="wave-b"></div>
+                                        <div class="wave-b"></div>
+                                        <div class="wave-b"></div>
+                                    </div>
+                                    <div class="call-resp">
+                                        <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style="opacity:0.45">
+                                            <circle cx="6" cy="6" r="4.5" stroke="white" stroke-width="1.2"/>
+                                            <path d="M6 3.5v2.8l1.5 1" stroke="#05df72" stroke-width="1.2" stroke-linecap="round"/>
+                                        </svg>
+                                        <span class="call-resp-label">Answered in</span>
+                                        <span class="call-resp-value">2.3s</span>
                                     </div>
                                 </div>
                             </div>
@@ -1115,11 +1431,11 @@
                     <div class="flex flex-col gap-2">
                         <p class="font-['Geist',Helvetica] font-normal text-sm leading-5">
                             <span class="text-slate-400">Executive Inquiries<br /></span>
-                            <span class="text-white">info@idispatchsolutions.com</span>
+                            <span class="text-white"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cca5a2aaa38ca5a8a5bfbcadb8afa4bfa3a0b9b8a5a3a2bfe2afa3a1">[email&#160;protected]</a></span>
                         </p>
                         <p class="font-['Geist',Helvetica] font-normal text-sm leading-5">
                             <span class="text-slate-400">Enterprise &amp; Multi-City Operations<br /></span>
-                            <span class="text-white">enterprise@idispatchsolutions.com</span>
+                            <span class="text-white"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c6a3a8b2a3b4b6b4afb5a386afa2afb5b6a7b2a5aeb5a9aab3b2afa9a8b5e8a5a9ab">[email&#160;protected]</a></span>
                         </p>
                         <span class="font-['Geist',Helvetica] font-normal text-slate-400 text-sm">+1 (800) DISPATCH</span>
                     </div>
@@ -1135,7 +1451,7 @@
         </footer>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // ── SCROLL REVEAL ──
         const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
         const revealObserver = new IntersectionObserver((entries) => {
@@ -1214,15 +1530,4 @@
                 rafId = requestAnimationFrame(() => {
                     rafId = null;
                     const y = window.scrollY;
-                    const cards = document.querySelectorAll('.float-card-1, .float-card-2, .float-card-3');
-                    cards.forEach((card, i) => {
-                        const speed = 0.04 + i * 0.015;
-                        const base = card.classList.contains('float-card-1') ? 0 : card.classList.contains('float-card-2') ? -14 : -8;
-                        card.style.transform = `translateY(${y * speed + base}px)`;
-                    });
-                });
-            }, { passive: true });
-        }
-    </script>
-</body>
-</html>
+                    const cards = document.querySelec
