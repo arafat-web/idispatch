@@ -1530,4 +1530,14 @@
                 rafId = requestAnimationFrame(() => {
                     rafId = null;
                     const y = window.scrollY;
-                    const cards = document.querySelec
+                    const cards = document.querySelectorAll('.call-card-enhanced, .float-card-2, .float-card-3');
+                    cards.forEach((card, i) => {
+                        const speed = 0.04 + i * 0.015;
+                        card.style.transform = `translateY(${y * speed}px)`;
+                    });
+                });
+            }, { passive: true });
+        }
+    </script>
+</body>
+</html>
